@@ -11,32 +11,35 @@
   <div class="app-container">
     <!-- Header -->
     <header class="header">
-      <img src="assets/logoBlanco.png">
+      <img id="logo-img" src="assets/logo.webp" alt="Logo" style="cursor: pointer;">
 
-	  <div id="artist-search">
-		<div class="search-wrapper">
-			<input type="text" id="artist-name" placeholder="Buscar artista..." onkeydown="checkEnter(event)">
-			<button id="search-btn">
-				<img src="assets/lupa.webp" alt="Buscar">
-			</button>
-		</div>
-	  </div>
-	
+      <div id="artist-search" style="display: none;"> <!-- Asegúrate de ocultar este div inicialmente -->
+        <div class="search-wrapper">
+          <input type="text" id="artist-name" placeholder="Buscar artista..." onkeydown="checkEnter(event)">
+          <button id="search-btn">
+            <img src="assets/lupa.webp" alt="Buscar">
+          </button>
+        </div>
+      </div>
 
-
-        <button id="logoutButton" class="logout-button">Logout</button>
-      </nav>
+      <!-- Contenedor para la imagen de perfil y el menú de logout -->
+      <div class="profile-menu">
+        <img id="profile-img" src="placeholder.jpg" alt="Foto de perfil" style="width: 50px; border-radius: 50%; cursor: pointer;">
+        <div id="dropdown" class="dropdown-content">
+          <a href="#" id="logoutButton">Logout</a>
+        </div>
+      </div>
     </header>
 
     <!-- Contenido principal que puede hacer scroll -->
     <main class="main-content">
       <h2>Bienvenido a Globify</h2>
       <p>Aquí irá el contenido principal de la aplicación.</p>
-        <div class="results-container">
-            <div id="artist-results" class="results-grid"></div>
-            <div id="track-results" class="results-grid"></div>
-        </div>
-    </div>
+      <div class="results-container">
+        <div id="artist-results" class="results-grid"></div>
+        <div id="track-results" class="results-grid"></div>
+      </div>
+      <div id="user-profile" style="display: none;"></div> <!-- Añadir un contenedor para el perfil del usuario -->
     </main>
   </div>
 
