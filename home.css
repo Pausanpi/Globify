@@ -1,8 +1,26 @@
-body {
-    background-color: black;
-}
-
-.header {
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+  }
+  
+  html, body {
+	height: 100%;
+	font-family: Arial, sans-serif;
+	overflow-x: hidden;
+	margin: 0;
+  }
+  
+  /* Contenedor principal de la aplicación */
+  .app-container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	position: relative;
+  }
+  
+  /* Header fijo en la parte superior */
+  .header {
 	background-color: #120c10;
 	color: white;
 	display: flex;
@@ -34,7 +52,6 @@ body {
 .search-wrapper {
     display: flex; /* Alinea el input y el botón en fila */
     align-items: center; /* Centra verticalmente */
-    background-color: #b585a0; 
     border-radius: 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -52,7 +69,7 @@ body {
 }
 
 #search-btn {
-    background-color: #b585a0; /* Color de fondo del botón */
+    background-color: #212121; /* Color de fondo del botón */
     border: none; /* Sin borde */
     padding: 10px; /* Espaciado interno */
     cursor: pointer; /* Cambia el cursor al pasar por encima */
@@ -67,8 +84,9 @@ body {
 .logout-button {
 	margin-left: 10px;
 }
-
-.main-content {
+  
+  /* Espacio para el contenido principal que puede hacer scroll */
+  .main-content {
 	padding: 20px;
 	flex: 1;
 	overflow-y: auto; /* Activar scroll si el contenido es largo */
@@ -76,17 +94,18 @@ body {
 	padding-bottom: 60px; /* Reservar espacio para el footer */
 	background-color: #121212;
 	color: #ccc;
-}
+  }
   
-/* Contenedor de las cajas de contenido */
-.scroll-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-}
-
-.results-container {
+  /* Contenedor de las cajas de contenido */
+  .scroll-content {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 10px;
+  }
+  
+  /* Asegúrate de tener esto en tu styles.css */
+  .results-container {
     display: flex; /* Usar Flexbox para alinear las columnas */
     justify-content: space-between; /* Espacio entre las columnas */
     margin-top: 20px; /* Espacio entre la barra de búsqueda y los resultados */
@@ -147,16 +166,21 @@ h4 {
 
 .profile-menu {
   position: relative;
-  display: inline-block;
+ /*  display: inline-block; */
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
+  right: 0;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+}
+
+.dropdown-content.show {
+    display: block; /* Mostrar el menú si tiene la clase "show" */
 }
 
 .dropdown-content a {
@@ -236,3 +260,4 @@ h4 {
       padding-right: 20px;
   }
 }
+
