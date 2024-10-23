@@ -21,7 +21,26 @@ if (window.location.hash) {
 // Mostrar el formulario de búsqueda si hay un token
 if (localStorage.getItem('spotifyToken')) {
     document.getElementById('artist-search').style.display = 'block'; // Mostrar el formulario de búsqueda
+    //displayUserProfile(); // Mostrar el perfil del usuario
 }
+
+// Función para obtener y mostrar el perfil del usuario
+/* async function displayUserProfile() {
+    const token = localStorage.getItem('spotifyToken');
+    const response = await fetch('https://api.spotify.com/v1/me', {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    const userData = await response.json();
+    const welcomeMessage = document.createElement('div');
+    welcomeMessage.innerHTML = `
+        <h2>Bienvenido, ${userData.display_name}!</h2>
+        <img src="${userData.images[0]?.url}" alt="Foto de perfil" style="width: 100px; border-radius: 50%;">
+    `;
+    document.querySelector('.main-content').insertBefore(welcomeMessage, document.getElementById('artist-search'));
+} */
 
 // Función para buscar artistas
 document.getElementById('search-btn')?.addEventListener('click', async () => {
