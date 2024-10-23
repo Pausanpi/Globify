@@ -196,3 +196,18 @@ document.getElementById('profile-img').addEventListener('click', function() {
   document.getElementById('logo-img').addEventListener('click', () => {
     window.location.href = 'http://localhost:5500/index.html'; // Cambia la URL según sea necesario
 });
+
+document.addEventListener('click', function(event) {
+    const artistResultsDiv = document.getElementById('artist-results');
+    const trackResultsDiv = document.getElementById('track-results');
+    const searchWrapper = document.querySelector('.search-wrapper');
+
+    const clickedOutsideArtist = !artistResultsDiv.contains(event.target);
+    const clickedOutsideTrack = !trackResultsDiv.contains(event.target);
+    const clickedOutsideSearch = !searchWrapper.contains(event.target);
+
+    if (clickedOutsideArtist && clickedOutsideTrack && clickedOutsideSearch) {
+        artistResultsDiv.innerHTML = ''; // Limpia los resultados de artistas
+        trackResultsDiv.innerHTML = '';  // Limpia los resultados de canciones
+    }
+});

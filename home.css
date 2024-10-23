@@ -1,28 +1,8 @@
-@import url('login.css');
+body {
+    background-color: black;
+}
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-  }
-  
-  html, body {
-	height: 100%;
-	font-family: Arial, sans-serif;
-	overflow-x: hidden;
-	margin: 0;
-  }
-  
-  /* Contenedor principal de la aplicación */
-  .app-container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	position: relative;
-  }
-  
-  /* Header fijo en la parte superior */
-  .header {
+.header {
 	background-color: #120c10;
 	color: white;
 	display: flex;
@@ -87,9 +67,8 @@
 .logout-button {
 	margin-left: 10px;
 }
-  
-  /* Espacio para el contenido principal que puede hacer scroll */
-  .main-content {
+
+.main-content {
 	padding: 20px;
 	flex: 1;
 	overflow-y: auto; /* Activar scroll si el contenido es largo */
@@ -97,31 +76,17 @@
 	padding-bottom: 60px; /* Reservar espacio para el footer */
 	background-color: #121212;
 	color: #ccc;
-  }
+}
   
-  /* Contenedor de las cajas de contenido */
-  .scroll-content {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	padding: 10px;
-  }
-  
-  /* Cajas de contenido */
-/*   .content-box {
-	background-color: #ffbefa;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-	padding: 20px;
-	height: 150px;
-	text-align: center;
-	font-size: 18px;
-	color: #333;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  } */
-  
-  /* Asegúrate de tener esto en tu styles.css */
-  .results-container {
+/* Contenedor de las cajas de contenido */
+.scroll-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.results-container {
     display: flex; /* Usar Flexbox para alinear las columnas */
     justify-content: space-between; /* Espacio entre las columnas */
     margin-top: 20px; /* Espacio entre la barra de búsqueda y los resultados */
@@ -271,4 +236,3 @@ h4 {
       padding-right: 20px;
   }
 }
-
