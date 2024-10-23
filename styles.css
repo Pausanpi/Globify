@@ -1,29 +1,33 @@
-/* Estilos globales (Mobile-First) */
+/* Estilos globales */
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
   }
   
-  body, html {
+  html, body {
 	height: 100%;
 	font-family: Arial, sans-serif;
+	overflow-x: hidden;
+	background-color: #ffbefa;
   }
   
-  /* Estructura principal */
+  /* Contenedor principal de la aplicación */
   .app-container {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
+	min-height: 100vh; /* Ocupar toda la altura de la ventana */
+	position: relative;
+	padding-bottom: 50px; /* Reservar espacio para el footer fijo */
   }
   
+  /* Header fijo en la parte superior */
   .header {
 	background-color: #1db954;
 	color: white;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	padding: 10px 20px;
 	height: 50px;
 	position: fixed;
 	top: 0;
@@ -32,6 +36,37 @@
 	z-index: 1000;
   }
   
+  /* Espacio para el contenido principal que puede hacer scroll */
+  .main-content {
+	flex: 1;
+	overflow-y: auto; /* Activar scroll si el contenido es largo */
+	padding-top: 60px; /* Dejar espacio para el header */
+	padding-bottom: 60px; /* Reservar espacio para el footer */
+	background-color: #ffa1db;
+  }
+  
+  /* Contenedor de las cajas de contenido */
+  .scroll-content {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 10px;
+  }
+  
+  /* Cajas de contenido */
+  .content-box {
+	background-color: #ffbefa;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	padding: 20px;
+	height: 150px;
+	text-align: center;
+	font-size: 18px;
+	color: #333;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer fijo en la parte inferior */
   .footer {
 	background-color: #121212;
 	color: white;
@@ -39,68 +74,11 @@
 	justify-content: center;
 	align-items: center;
 	height: 50px;
+	width: 100%;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	z-index: 1000;
-  }
-  
-  .main-content {
-	padding: 60px 10px 60px;  /* Espacio para el header y footer */
-	flex: 1;
-	background-color: #fafafa;
-  }
-  
-  .logout-button {
-	background-color: #ffffff;
-	color: #1db954;
-	border: none;
-	padding: 8px 15px;
-	font-size: 12px;
-	cursor: pointer;
-	transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .logout-button:hover {
-	background-color: #1db954;
-	color: white;
-  }
-  
-  /* Responsive para pantallas más grandes (tablets y desktop) */
-  @media (min-width: 768px) {
-	.header {
-	  height: 60px;
-	  padding: 0 40px;
-	}
-  
-	.footer {
-	  height: 60px;
-	  padding: 0 40px;
-	}
-  
-	.main-content {
-	  padding: 80px 40px 80px;  /* Ajustamos el espacio para header/footer */
-	}
-  
-	.logout-button {
-	  padding: 10px 20px;
-	  font-size: 14px;
-	}
-  }
-  
-  @media (min-width: 1024px) {
-	.header, .footer {
-	  padding: 0 60px;
-	}
-  
-	.main-content {
-	  padding: 100px 60px 100px;
-	}
-  
-	.logout-button {
-	  padding: 12px 25px;
-	  font-size: 16px;
-	}
   }
   
