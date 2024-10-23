@@ -226,33 +226,6 @@ h4 {
   padding-top: 60px;
 }
 
-/* Estilo para las opciones del menú */
-/* Estilo del footer y los iconos en dispositivos móviles */
-.footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #1DB954; /* Color de fondo del menú */
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-around; /* Distribuye los iconos de forma equitativa */
-  align-items: center;
-  z-index: 1000;
-  border-top: 2px solid #ccc; /* Borde superior */
-}
-
-/* Estilo de los iconos del menú */
-.icon-menu a {
-  text-decoration: none;
-  color: white;
-}
-
-.menu-icon {
-  width: 40px; /* Ajusta el tamaño del icono */
-  height: 40px;
-  cursor: pointer;
-}
-
 /* En pantallas más grandes, puedes ajustar el diseño si es necesario */
 @media (min-width: 769px) {
   .footer {
@@ -261,3 +234,17 @@ h4 {
   }
 }
 
+.footer {
+    background-color: #1DB954 ;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    align-items: center;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
