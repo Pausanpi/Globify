@@ -15,7 +15,7 @@
 
       <div id="artist-search"> <!-- Asegúrate de ocultar este div inicialmente -->
         <div class="search-wrapper">
-          <input type="text" id="artist-name" placeholder="¿Qué quieres repoducir?" onkeydown="checkEnter(event)">
+          <input type="text" id="artist-name" placeholder="¿Qué quieres reproducir?" onkeydown="checkEnter(event)">
           <button id="search-btn">
             <img src="assets/lupa.png" alt="Buscar">
           </button>
@@ -41,7 +41,7 @@
       <div id="user-profile" style="display: none;"></div> <!-- Añadir un contenedor para el perfil del usuario -->
     
       <h2>Mis Canciones Favoritas</h2>
-      <div class="results-container" id="favorites-list"></div>
+      <div class="favorites-list" id="favorites-list"></div> <!-- Cambiar a un div más específico -->
     
     </main>
   </div>
@@ -60,10 +60,9 @@
         </a>
         <a href="playlist.html">
           <img src="assets/playlist.png" alt="Página 4" class="menu-icon">
-      </a>
+        </a>
     </div>
-</footer>
-
+  </footer>
 
   <script src="app.js"></script>
 </body>

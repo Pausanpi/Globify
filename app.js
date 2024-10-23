@@ -187,7 +187,7 @@ function addToFavorites(track) {
 }
 
 // Función para cargar y mostrar los favoritos en favorites.html
-function loadFavorites() {
+/*function loadFavorites() {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     const favoritesListDiv = document.getElementById('favorites-list');
 
@@ -214,7 +214,54 @@ function loadFavorites() {
             audio.play();
         });
     });
+}*/
+
+// Función para cargar y mostrar las canciones favoritas
+function loadFavorites() {
+    const favoritesListDiv = document.getElementById('favorites-list');
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    // Limpiar el contenedor antes de agregar elementos
+    favoritesListDiv.innerHTML = '';
+
+    if (favorites.length === 0) {
+        favoritesListDiv.innerHTML = '<p>No tienes canciones favoritas.</p>';
+    } else {
+        favorites.forEach(track => {
+            const favoriteItemDiv = document.createElement('div');
+            favoriteItemDiv.classList.add('favorite-item');
+            favoriteItemDiv.innerHTML = `
+                <img src="${track.imageUrl}" alt="${track.name}">
+                <div>
+                    <h4>${track.name}</h4>
+                    <p>${track.artists}</p>
+                </div>
+                <button class="play-btn" data-url="${track.previewUrl}">Reproducir</button>
+            `;
+
+            favoritesListDiv.appendChild(favoriteItemDiv);
+
+            // Manejo del evento de clic en el botón de reproducción
+            favoriteItemDiv.querySelector('.play-btn').addEventListener('click', () => {
+                playTrack(track.previewUrl); // Implementa la función de reproducción
+            });
+        });
+    }
 }
+
+// Función para reproducir la canción
+function playTrack(previewUrl) {
+    const audio = new Audio(previewUrl);
+    audio.play(); // Reproducir la canción
+}
+
+// Cargar favoritos al cargar la página
+window.onload = () => {
+    loadFavorites(); // Cargar favoritos al inicio
+};
+
+
+//--------------------------------------------------------------------------
 
 if (document.getElementById('favorites-list')) {
     loadFavorites(); // Llama a esta función en favorites.html
