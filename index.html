@@ -5,13 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Globify</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/gato.webp">
 </head>
 <body>
   <div class="app-container">
     <!-- Header -->
     <header class="header">
-      <h1>Globify</h1>
-      <nav>
+      <img src="assets/gato.webp">
+
+
+	  <!-- <div id="artist-search">
+        <input type="text" id="artist-name" placeholder="Buscar artista...">
+        <button id="search-btn">
+			<img src="assets/lupa.webp" alt="Buscar">
+		</button>
+	  </div> -->
+	  <div id="artist-search">
+		<div class="search-wrapper">
+			<input type="text" id="artist-name" placeholder="Buscar artista..." onkeydown="checkEnter(event)">
+			<button id="search-btn">
+				<img src="assets/lupa.webp" alt="Buscar">
+			</button>
+		</div>
+	  </div>
+	
+
+
         <button id="logoutButton" class="logout-button">Logout</button>
       </nav>
     </header>
@@ -19,12 +38,11 @@
     <!-- Contenido principal que puede hacer scroll -->
     <main class="main-content">
       <h2>Bienvenido a Globify</h2>
-      <p>Aquí irá el contenido principal de la aplicación.</p>
-      <div id="artist-search">
+      <!-- <div id="artist-search">
         <input type="text" id="artist-name" placeholder="Buscar artista...">
         <button id="search-btn">Buscar</button>
         <div id="results"></div>
-      </div>
+      </div> -->
 
 	  <div class="scroll-content">
 		<div class="content-box"></div>
@@ -38,7 +56,7 @@
 
     <!-- Footer fijo en la parte inferior -->
     <footer class="footer">
-      <p class="Barra_fija">Barra de reproducción o Footer Fijo</p>
+      <p>Barra de reproducción o Footer Fijo</p>
     </footer>
   </div>
 

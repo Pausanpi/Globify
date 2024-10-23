@@ -10,6 +10,7 @@
 	font-family: Arial, sans-serif;
 	overflow-x: hidden;
 	background-color: #ffbefa;
+	margin: 0;
   }
   
   /* Contenedor principal de la aplicación */
@@ -23,10 +24,11 @@
   
   /* Header fijo en la parte superior */
   .header {
-	background-color: #1db954;
+	background-color: #120c10;
 	color: white;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
+	padding: 10px;
 	align-items: center;
 	height: 50px;
 	position: fixed;
@@ -35,14 +37,67 @@
 	right: 0;
 	z-index: 1000;
   }
+
+  .header img {
+    height: 50px;         /* Establece la altura del header */
+    max-width: 100%;      /* Asegura que la imagen no se desborde */
+    object-fit: contain;   /* Mantiene la proporción de la imagen */
+}
+
+#artist-search {
+    position: relative; /* Permite posicionar elementos internos */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    padding: 10px; /* Espaciado alrededor */
+	display: flex;
+	justify-content: center;
+}
+
+.search-wrapper {
+    display: flex; /* Alinea el input y el botón en fila */
+    align-items: center; /* Centra verticalmente */
+    background-color: #b585a0; 
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+	width: 300px;
+	margin: auto;
+}
+
+#artist-name {
+    flex: 1;
+    padding: 10px; 
+    border: none; 
+    outline: none; 
+    font-size: 16px;
+    color: #333;
+}
+
+#search-btn {
+    background-color: #b585a0; /* Color de fondo del botón */
+    border: none; /* Sin borde */
+    padding: 10px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+}
+
+#search-btn img {
+    height: 16px; /* Ajusta la altura del ícono */
+    width: 16px; /* Ajusta el ancho del ícono */
+}
+
+
+.logout-button {
+	margin-left: 10px;
+}
   
   /* Espacio para el contenido principal que puede hacer scroll */
   .main-content {
+	padding: 20px;
 	flex: 1;
 	overflow-y: auto; /* Activar scroll si el contenido es largo */
 	padding-top: 60px; /* Dejar espacio para el header */
 	padding-bottom: 60px; /* Reservar espacio para el footer */
-	background-color: #ffa1db;
+	background-color: #34212c;
+	color: #ccc;
   }
   
   /* Contenedor de las cajas de contenido */
@@ -68,8 +123,7 @@
   
   /* Footer fijo en la parte inferior */
   .footer {
-	background-color: #121212;
-	opacity: 50%;
+	background: linear-gradient(to top, #ff0184, #ff018478, #ff018448, #ff018400);
 	color: white;
 	display: flex;
 	justify-content: center;
@@ -82,4 +136,3 @@
 	right: 0;
 	z-index: 1000;
   }
-  

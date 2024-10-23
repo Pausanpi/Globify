@@ -75,3 +75,20 @@ document.getElementById('logoutButton')?.addEventListener('click', () => {
     alert("Has cerrado sesión exitosamente."); // Mensaje opcional de cierre de sesión
 	window.location.href= 'http://localhost:5500/login.html';
 });
+
+document.getElementById("search-btn").addEventListener("click", function() {
+    search();
+});
+
+function checkEnter(event) {
+    if (event.key === "Enter") {
+        search();
+    }
+}
+
+function search() {
+    const query = document.getElementById("artist-name").value;
+    console.log("Buscando artista:", query);
+    // Aquí puedes implementar la lógica para realizar la búsqueda usando la API de Spotify
+    // Por ejemplo, hacer una llamada a la API para buscar el artista
+}
