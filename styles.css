@@ -82,3 +82,70 @@
 	z-index: 1000;
   }
   
+  /* Asegúrate de tener esto en tu styles.css */
+  .results-container {
+    display: flex; /* Usar Flexbox para alinear las columnas */
+    justify-content: space-between; /* Espacio entre las columnas */
+    margin-top: 20px; /* Espacio entre la barra de búsqueda y los resultados */
+}
+
+.results-grid {
+    display: flex; /* Usar Flexbox para mostrar resultados en filas */
+    flex-wrap: wrap; /* Permitir que los elementos se ajusten a varias filas */
+    flex: 1; /* Las columnas ocuparán espacio equitativamente */
+    margin: 0 10px; /* Margen entre las columnas */
+}
+
+.result-item {
+    margin: 5px; /* Espacio entre los resultados individuales */
+    text-align: center; /* Centrar el texto y las imágenes */
+    flex: 1 1 45%; /* Ajustar el ancho a un 45% para que se vean dos en una fila */
+    box-sizing: border-box; /* Asegura que el margen no afecte el ancho total */
+    background-color: #fff; /* Fondo blanco para las tarjetas */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para un efecto de elevación */
+    padding: 10px; /* Espacio interno */
+    transition: transform 0.2s; /* Animación al pasar el ratón */
+}
+
+.result-item:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+}
+
+.result-item img {
+    width: 100%; /* Hacer que las imágenes ocupen el ancho completo del contenedor */
+    border-radius: 4px; /* Bordes redondeados para las imágenes */
+}
+
+h3 {
+    text-align: left; /* Alinear los títulos a la izquierda */
+    margin-bottom: 10px; /* Espacio debajo de los títulos */
+    font-size: 20px; /* Tamaño de fuente para títulos */
+    color: #333; /* Color del texto */
+}
+
+h4 {
+    font-size: 16px; /* Tamaño de fuente para los nombres */
+    color: #1db954; /* Color verde de Spotify */
+}
+
+.play-btn {
+    background-color: #1db954; /* Color verde de Spotify */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.play-btn:hover {
+    background-color: #1aa34a; /* Un tono más oscuro al pasar el ratón */
+}
+
+
+
+
+
+
+  
+  

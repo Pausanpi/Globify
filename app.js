@@ -21,7 +21,7 @@ if (window.location.hash) {
 // Mostrar el formulario de búsqueda si hay un token
 if (localStorage.getItem('spotifyToken')) {
     document.getElementById('artist-search').style.display = 'block'; // Mostrar el formulario de búsqueda
-    //displayUserProfile(); // Mostrar el perfil del usuario
+    // displayUserProfile(); // Mostrar el perfil del usuario
 }
 
 // Función para obtener y mostrar el perfil del usuario
@@ -42,30 +42,121 @@ if (localStorage.getItem('spotifyToken')) {
     document.querySelector('.main-content').insertBefore(welcomeMessage, document.getElementById('artist-search'));
 } */
 
-// Función para buscar artistas
+// Función para buscar artistas y canciones
 document.getElementById('search-btn')?.addEventListener('click', async () => {
-    const artistName = document.getElementById('artist-name').value;
+    const query = document.getElementById('artist-name').value;
     const token = localStorage.getItem('spotifyToken');
 
-    const response = await fetch(`https://api.spotify.com/v1/search?q=${artistName}&type=artist`, {
+    // Realiza la búsqueda de artistas y canciones
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=artist,track`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     });
 
     const data = await response.json();
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = ''; // Limpiar resultados previos
 
-    if (data.artists.items.length > 0) {
+    // Limpiar resultados previos
+    const artistResultsDiv = document.getElementById('artist-results');
+    const trackResultsDiv = document.getElementById('track-results');
+    artistResultsDiv.innerHTML = ''; // Vacía los resultados anteriores
+    trackResultsDiv.innerHTML = ''; // Vacía los resultados anteriores
+
+    // Mostrar resultados de artistas
+    if (data.artists && data.artists.items.length > 0) {
         data.artists.items.forEach(artist => {
             const artistDiv = document.createElement('div');
-            artistDiv.innerHTML = `<h3>${artist.name}</h3><img src="${artist.images[0]?.url}" alt="${artist.name}" style="width: 100px;">`;
-            resultsDiv.appendChild(artistDiv);
+            artistDiv.classList.add('result-item'); // Añade una clase común para estilos
+            artistDiv.innerHTML = `
+                <h4>${artist.name}</h4>
+                <img src="${artist.images[0]?.url || 'placeholder.jpg'}" alt="${artist.name}">
+            `;
+            artistResultsDiv.appendChild(artistDiv);
         });
     } else {
-        resultsDiv.innerHTML = '<p>No se encontraron artistas.</p>';
+        artistResultsDiv.innerHTML = '<p>No se encontraron artistas.</p>';
     }
+
+    // Mostrar resultados de canciones
+    let currentAudio = null; // Variable para almacenar el audio actual
+let currentButton = null; // Variable para almacenar el botón actual
+
+// Mostrar resultados de canciones
+if (data.tracks && data.tracks.items.length > 0) {
+    data.tracks.items.forEach(track => {
+        const trackDiv = document.createElement('div');
+        trackDiv.classList.add('result-item'); // Añade una clase común para estilos
+        trackDiv.innerHTML = `
+            <h4>${track.name}</h4>
+            <p>${track.artists.map(artist => artist.name).join(', ')}</p>
+            <img src="${track.album.images[0]?.url || 'placeholder.jpg'}" alt="${track.name}">
+        `;
+        
+        // Mostrar el preview_url en la consola
+        console.log(track.name, track.preview_url); 
+
+        // Añadir botón solo si hay preview_url
+        if (track.preview_url) {
+            trackDiv.innerHTML += `<button class="play-btn" data-url="${track.preview_url}">Reproducir</button>`;
+        } else {
+            trackDiv.innerHTML += `<p>Vista previa no disponible.</p>`;
+        }
+        trackResultsDiv.appendChild(trackDiv);
+
+        // Manejo del evento de clic en el botón de reproducción
+        trackDiv.querySelector('.play-btn')?.addEventListener('click', () => {
+            // Si hay un audio reproduciéndose, lo pausamos
+            if (currentAudio) {
+                currentAudio.pause();
+                // Cambia el texto del botón de reproducción anterior
+                if (currentButton) {
+                    currentButton.textContent = 'Reproducir'; // Cambia el texto del botón
+                }
+            }
+
+            // Si el audio es el mismo que el actual, lo pausamos
+            if (currentAudio && currentAudio.src === track.preview_url) {
+                currentAudio.pause(); // Pausar si ya está reproduciendo
+                currentAudio.currentTime = 0; // Reiniciar a la posición inicial si es necesario
+                currentAudio = null; // Limpiar la referencia
+                currentButton.textContent = 'Reproducir'; // Cambia el texto del botón a "Reproducir"
+            } else {
+                // Crear un nuevo audio si no es el mismo
+                currentAudio = new Audio(track.preview_url);
+                currentAudio.play().catch(error => {
+                    console.error('Error al reproducir:', error);
+                });
+                
+                // Cambia el texto del botón a "Pausar"
+                currentButton = trackDiv.querySelector('.play-btn');
+                currentButton.textContent = 'Pausar';
+
+                // Limpiar la referencia al finalizar
+                currentAudio.addEventListener('ended', () => {
+                    currentAudio = null; // Limpiar la referencia al final
+                    currentButton.textContent = 'Reproducir'; // Cambia el texto del botón al finalizar
+                });
+                
+                // Actualiza currentButton para el siguiente clic
+                currentButton.addEventListener('click', () => {
+                    if (currentAudio.paused) {
+                        currentAudio.play();
+                        currentButton.textContent = 'Pausar'; // Cambia el texto a "Pausar"
+                    } else {
+                        currentAudio.pause();
+                        currentButton.textContent = 'Reproducir'; // Cambia el texto a "Reproducir"
+                    }
+                });
+            }
+        });
+    });
+} else {
+    trackResultsDiv.innerHTML = '<p>No se encontraron canciones.</p>';
+}
+
+
+    // Agregar eventos a los botones de reproducción
+    addPlayButtonEvents();
 });
 
 // Manejo del botón de Logout
@@ -73,5 +164,5 @@ document.getElementById('logoutButton')?.addEventListener('click', () => {
     localStorage.removeItem('spotifyToken'); // Elimina el token
     document.getElementById('artist-search').style.display = 'none'; // Ocultar el formulario de búsqueda
     alert("Has cerrado sesión exitosamente."); // Mensaje opcional de cierre de sesión
-	window.location.href= 'http://localhost:5500/login.html';
+    window.location.href= 'http://localhost:5500/login.html'; // Redirige a la página de login
 });
