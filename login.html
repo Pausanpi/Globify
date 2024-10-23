@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="login.css">
-	<link rel="icon" href="assets/logo.webp">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globify</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/logo.webp">
 </head>
 <body>
-	<div class="app-container">
-		<!-- Header -->
-		<header class="header">
-		  <img src="assets/logo.webp">
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <img id="logo-img" src="assets/logo.webp" style="cursor: pointer;">
+
+	  <div id="artist-search">
+		<div class="search-wrapper">
+			<input type="text" id="artist-name" placeholder="Buscar artista..." onkeydown="checkEnter(event)">
+			<button id="search-btn">
+				<img src="assets/lupa.webp" alt="Buscar">
+			</button>
+		</div>
+	  </div>
 	
-		  <div id="artist-search">
-			<div class="search-wrapper">
-				<input type="text" id="artist-name" placeholder="Buscar artista..." onkeydown="checkEnter(event)">
-				<button id="search-btn">
-					<img src="assets/lupa.webp" alt="Buscar">
-				</button>
-			</div>
-		  </div>
 
-		</header>
-		
-	</div>
-    <h1>Iniciar Sesión en Spotify</h1>
-    <button id="login-btn">Iniciar Sesión</button>
 
-    <script src="app.js"></script> <!-- Tu archivo JavaScript -->
+	  <button id="login-btn">Iniciar Sesión</button>
+    </header>
+
+    <!-- Contenido principal que puede hacer scroll -->
+    <main class="main-content">
+      <h2>Bienvenido a Globify</h2>
+      <p>Aquí irá el contenido principal de la aplicación.</p>
+        <div class="results-container">
+            <div id="artist-results" class="results-grid"></div>
+            <div id="track-results" class="results-grid"></div>
+        </div>
+    </div>
+    </main>
+
+    <!-- Footer fijo en la parte inferior -->
+    <footer class="footer">
+      <p>Barra de reproducción o Footer Fijo</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>

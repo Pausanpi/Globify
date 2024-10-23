@@ -5,9 +5,6 @@ const RESPONSE_TYPE = 'token';
 
 const SCOPES = 'user-read-private user-read-email';
 const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}`;
-const SCOPES = 'user-read-private user-read-email';
-
-const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}`;
 
 // Manejo de eventos para el botón de inicio de sesión en index.html
 document.getElementById('login-btn')?.addEventListener('click', () => {
@@ -18,6 +15,7 @@ document.getElementById('login-btn')?.addEventListener('click', () => {
 if (window.location.hash) {
     const token = window.location.hash.split('&')[0].split('=')[1];
     localStorage.setItem('spotifyToken', token);
+    console.log('Token guardado:', token); // Verifica el token aquí
     window.location.hash = ''; // Limpiar el hash para evitar redirecciones innecesarias
     window.location.reload(); // Recargar la página para mostrar los elementos de búsqueda
 }
@@ -25,34 +23,42 @@ if (window.location.hash) {
 // Mostrar el formulario de búsqueda si hay un token
 if (localStorage.getItem('spotifyToken')) {
     document.getElementById('artist-search').style.display = 'block'; // Mostrar el formulario de búsqueda
-    // displayUserProfile(); // Mostrar el perfil del usuario
+    displayUserProfile(); // Mostrar el perfil del usuario
 }
 
 // Función para obtener y mostrar el perfil del usuario
-/* async function displayUserProfile() {
+async function displayUserProfile() {
     const token = localStorage.getItem('spotifyToken');
-    const response = await fetch('https://api.spotify.com/v1/me', {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
 
-    const userData = await response.json();
-    const welcomeMessage = document.createElement('div');
-    welcomeMessage.innerHTML = `
-        <h2>Bienvenido, ${userData.display_name}!</h2>
-        <img src="${userData.images[0]?.url}" alt="Foto de perfil" style="width: 100px; border-radius: 50%;">
-    `;
-    document.querySelector('.main-content').insertBefore(welcomeMessage, document.getElementById('artist-search'));
-} */
+    try {
+        const response = await fetch('https://api.spotify.com/v1/me', {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
 
+        if (response.ok) {
+            const userData = await response.json();
+            
+            // Mostrar el perfil del usuario en el contenedor correcto
+            const userProfileDiv = document.getElementById('user-profile');
+            userProfileDiv.style.display = 'block'; // Mostrar el perfil
 
-    
+            // Actualizar la imagen de perfil en el encabezado
+            const profileImg = document.getElementById('profile-img');
+            profileImg.src = userData.images[0]?.url || 'placeholder.jpg'; // Actualiza la imagen de perfil
+        } else {
+            console.error('Error en la respuesta de la API:', response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+    }
+}
+
 // Función para buscar artistas y canciones
 let currentAudio = null; // Variable para almacenar el audio actual
 let currentButton = null; // Variable para almacenar el botón actual
 
-// Función para buscar artistas y canciones
 document.getElementById('search-btn')?.addEventListener('click', async () => {
     const query = document.getElementById('artist-name').value;
     const token = localStorage.getItem('spotifyToken');
@@ -158,13 +164,41 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
     }
 });
 
-  
+// Manejo del clic fuera de los resultados
+document.addEventListener('click', (event) => {
+    const artistResultsDiv = document.getElementById('artist-results');
+    const trackResultsDiv = document.getElementById('track-results');
+    
+    // Comprobar si el clic fue fuera de los resultados de artistas y canciones
+    if (!artistResultsDiv.contains(event.target) && !trackResultsDiv.contains(event.target) && event.target.id !== 'search-btn' && event.target.id !== 'artist-name') {
+        artistResultsDiv.innerHTML = ''; // Limpiar resultados de artistas
+        trackResultsDiv.innerHTML = ''; // Limpiar resultados de canciones
+    }
+});
 
 // Manejo del botón de Logout
 document.getElementById('logoutButton')?.addEventListener('click', () => {
     console.log("Logout button clicked"); // Para depuración
     localStorage.removeItem('spotifyToken'); // Elimina el token
     document.getElementById('artist-search').style.display = 'none'; // Ocultar el formulario de búsqueda
-    alert("Has cerrado sesión exitosamente."); // Mensaje opcional de cierre de sesión
+    document.getElementById('user-profile').style.display = 'none'; // Ocultar el perfil del usuario
     window.location.href = 'http://localhost:5500/login.html'; // Redirige a la página de login
+});
+
+document.getElementById('profile-img').addEventListener('click', function() {
+    document.getElementById("dropdown").classList.toggle("show");
+  });
+
+  // Cerrar el menú si se hace clic fuera de él
+  window.onclick = function(event) {
+    if (!event.target.matches('#profile-img')) {
+      const dropdowns = document.getElementsByClassName("dropdown-content");
+      for (let i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].classList.remove('show');
+      }
+    }
+  }
+
+  document.getElementById('logo-img').addEventListener('click', () => {
+    window.location.href = 'http://localhost:5500/index.html'; // Cambia la URL según sea necesario
 });
