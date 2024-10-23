@@ -69,6 +69,7 @@
   /* Footer fijo en la parte inferior */
   .footer {
 	background-color: #121212;
+	opacity: 50%;
 	color: white;
 	display: flex;
 	justify-content: center;
