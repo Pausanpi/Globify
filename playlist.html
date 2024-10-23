@@ -1,61 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Globify</title>
-    <link rel="stylesheet" href="home.css">
-    <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globify</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
 </head>
 <body>
+  <div class="app-container">
+    <!-- Header -->
     <header class="header">
-        <img id="logo-img" src="assets/logoBlanco.png" alt="Logo" style="cursor: pointer;">
-        
-        <div id="artist-search" style="display: none;">
-            <div class="search-wrapper">
-                <input type="text" id="artist-name" placeholder="Buscar artista..." onkeydown="checkEnter(event)">
-                <button id="search-btn">
-                    <img src="assets/lupa.webp" alt="Buscar">
-                </button>
-            </div>
-        </div>
+      <img id="logo-img" src="assets/logoBlanco.png" alt="Logo" style="cursor: pointer;">
 
-        <div class="profile-menu">
-            <img id="profile-img" src="placeholder.jpg" alt="Foto de perfil" style="width: 50px; border-radius: 50%; cursor: pointer;">
-            <div id="dropdown" class="dropdown-content">
-                <a href="#" id="logoutButton">Logout</a>
-            </div>
+      <div id="artist-search"> <!-- Asegúrate de ocultar este div inicialmente -->
+        <div class="search-wrapper">
+          <input type="text" id="artist-name" placeholder="¿Qué quieres repoducir?" onkeydown="checkEnter(event)">
+          <button id="search-btn">
+            <img src="assets/lupa.png" alt="Buscar">
+          </button>
         </div>
+      </div>
+
+      <!-- Contenedor para la imagen de perfil y el menú de logout -->
+      <div class="profile-menu">
+        <img id="profile-img" src="placeholder.jpg" alt="Foto de perfil" style="width: 50px; border-radius: 50%; cursor: pointer;">
+        <div id="dropdown" class="dropdown-content">
+          <a href="#" id="logoutButton">Logout</a>
+        </div>
+      </div>
     </header>
-    
+
+    <!-- Contenido principal que puede hacer scroll -->
     <main class="main-content">
-        <p>PLAYLIST</p>
-        <div class="results-container">
-            <div id="artist-results" class="results-grid"></div>
-            <div id="track-results" class="results-grid"></div>
-        </div>
-        <div id="user-profile" style="display: none;"></div>
+      <h2>PLAYLIST</h2>
+      <div class="results-container">
+        <div id="artist-results" class="results-grid"></div>
+        <div id="track-results" class="results-grid"></div>
+      </div>
+      <div id="user-profile" style="display: none;"></div> <!-- Añadir un contenedor para el perfil del usuario -->
     </main>
+  </div>
 
-    <footer class="footer">
-        <!-- Menú de tres iconos en el pie de página -->
-        <div class="icon-menu">
-            <a href="index.html">
-                <img src="assets/icon1.png" alt="Página 1" class="menu-icon">
-            </a>
-            <a href="home.html">
-                <img src="assets/icon2.png" alt="Página 2" class="menu-icon">
-            </a>
-            <a href="favourites.html">
-                <img src="assets/icon3.png" alt="Página 3" class="menu-icon">
-            </a>
-            <a href="playlist.html">
-              <img src="assets/icon3.png" alt="Página 4" class="menu-icon">
-          </a>
-        </div>
-    </footer>
+  <footer class="footer">
+    <!-- Menú de tres iconos en el pie de página -->
+    <div class="icon-menu">
+        <a href="index.html">
+            <img src="assets/icon1.png" alt="Página 1" class="menu-icon">
+        </a>
+        <a href="home.html">
+            <img src="assets/icon2.png" alt="Página 2" class="menu-icon">
+        </a>
+        <a href="favourites.html">
+            <img src="assets/icon3.png" alt="Página 3" class="menu-icon">
+        </a>
+        <a href="playlist.html">
+          <img src="assets/icon3.png" alt="Página 4" class="menu-icon">
+      </a>
+    </div>
+</footer>
 
-    <script src="app.js"></script>
 
+  <script src="app.js"></script>
 </body>
 </html>
