@@ -3,7 +3,7 @@
 	color: white;
 	display: flex;
 	justify-content: space-between;
-	padding: 10px;
+	padding: 15px;
 	align-items: center;
 	height: 50px;
 	position: fixed;
@@ -64,19 +64,20 @@
 .search-bar {
 	display: flex;
 	align-items: center;
-	background-color: #121212;
+	background-color: #212121;
 	padding: 10px 15px;
 	border-radius: 25px;
 	width: 100%;
-	max-width: 500px;
+	max-width: 400px;
 	margin: 0 auto;
-	border: 1px solid #333;
+	height: 35px;
   }
   
   .search-icon svg, .right-icon svg {
-	width: 24px;
-	height: 24px;
+	width: 18px;
+	height: 18px;
 	margin-right: 10px;
+	display: block;
   }
   
   .search-input {
@@ -85,13 +86,14 @@
 	border: none;
 	outline: none;
 	color: white;
-	font-size: 16px;
+	font-size: 14px;
 	padding-left: 5px;
+	padding: 5px 0;
   }
   
   .right-icon svg {
-	width: 24px;
-	height: 24px;
+	width: 18px;
+	height: 18px;
 	margin-left: 10px;
   }
   

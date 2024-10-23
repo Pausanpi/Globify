@@ -10,7 +10,6 @@
 	height: 100%;
 	font-family: Arial, sans-serif;
 	overflow-x: hidden;
-	background-color: #ffbefa;
 	margin: 0;
   }
   
@@ -18,9 +17,8 @@
   .app-container {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh; /* Ocupar toda la altura de la ventana */
+	min-height: 100vh;
 	position: relative;
-	padding-bottom: 50px; /* Reservar espacio para el footer fijo */
   }
   
   /* Header fijo en la parte superior */
@@ -110,7 +108,7 @@
   }
   
   /* Cajas de contenido */
-  .content-box {
+/*   .content-box {
 	background-color: #ffbefa;
 	border: 1px solid #ccc;
 	border-radius: 8px;
@@ -120,7 +118,7 @@
 	font-size: 18px;
 	color: #333;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  } */
   
   /* Asegúrate de tener esto en tu styles.css */
   .results-container {
@@ -210,7 +208,3 @@ h4 {
 .show {
   display: block;
 }
-
-
-  
-  
