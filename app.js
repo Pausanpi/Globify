@@ -164,17 +164,11 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
     }
 });
 
-// Manejo del clic fuera de los resultados
-document.addEventListener('click', (event) => {
-    const artistResultsDiv = document.getElementById('artist-results');
-    const trackResultsDiv = document.getElementById('track-results');
-    
-    // Comprobar si el clic fue fuera de los resultados de artistas y canciones
-    if (!artistResultsDiv.contains(event.target) && !trackResultsDiv.contains(event.target) && event.target.id !== 'search-btn' && event.target.id !== 'artist-name') {
-        artistResultsDiv.innerHTML = ''; // Limpiar resultados de artistas
-        trackResultsDiv.innerHTML = ''; // Limpiar resultados de canciones
+function checkEnter(event) {
+    if (event.key === 'Enter') {
+        document.getElementById('search-btn').click(); // Simula un clic en el botón de búsqueda
     }
-});
+}
 
 // Manejo del botón de Logout
 document.getElementById('logoutButton')?.addEventListener('click', () => {
