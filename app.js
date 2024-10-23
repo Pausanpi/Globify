@@ -5,9 +5,6 @@ const RESPONSE_TYPE = 'token';
 
 const SCOPES = 'user-read-private user-read-email';
 const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}`;
-const SCOPES = 'user-read-private user-read-email';
-
-const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}`;
 
 // Manejo de eventos para el botón de inicio de sesión en index.html
 document.getElementById('login-btn')?.addEventListener('click', () => {

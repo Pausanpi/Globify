@@ -58,3 +58,50 @@
     height: 16px; /* Ajusta la altura del ícono */
     width: 16px; /* Ajusta el ancho del ícono */
 }
+
+/*----------------------------------------*/
+
+.search-bar {
+	display: flex;
+	align-items: center;
+	background-color: #121212;
+	padding: 10px 15px;
+	border-radius: 25px;
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+	border: 1px solid #333;
+  }
+  
+  .search-icon svg, .right-icon svg {
+	width: 24px;
+	height: 24px;
+	margin-right: 10px;
+  }
+  
+  .search-input {
+	flex: 1;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	color: white;
+	font-size: 16px;
+	padding-left: 5px;
+  }
+  
+  .right-icon svg {
+	width: 24px;
+	height: 24px;
+	margin-left: 10px;
+  }
+  
+  .search-input::placeholder {
+	color: #b3b3b3;
+  }
+  
+  .search-bar:focus-within {
+	border-color: #1db954; /* Verde de Spotify */
+  }
+  
+  
+  

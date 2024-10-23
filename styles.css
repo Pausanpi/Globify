@@ -1,4 +1,5 @@
-/* Estilos globales */
+@import url('login.css');
+
 * {
 	margin: 0;
 	padding: 0;
@@ -119,22 +120,6 @@
 	font-size: 18px;
 	color: #333;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Footer fijo en la parte inferior */
-  .footer {
-	background: linear-gradient(to top, #ff0184, #ff018478, #ff018448, #ff018400);
-	color: white;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 50px;
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 1000;
   }
   
   /* Asegúrate de tener esto en tu styles.css */
