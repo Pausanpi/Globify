@@ -4,9 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="style.css"> <!-- Si tienes un archivo CSS -->
+    <link rel="stylesheet" href="login.css">
+	<link rel="icon" href="assets/logo.webp">
 </head>
 <body>
+	<div class="app-container">
+		<!-- Header -->
+		<header class="header">
+		  <img src="assets/logo.webp">
+	
+		  <div id="artist-search">
+			<div class="search-wrapper">
+				<input type="text" id="artist-name" placeholder="Buscar artista..." onkeydown="checkEnter(event)">
+				<button id="search-btn">
+					<img src="assets/lupa.webp" alt="Buscar">
+				</button>
+			</div>
+		  </div>
+
+		</header>
+		
+	</div>
     <h1>Iniciar Sesión en Spotify</h1>
     <button id="login-btn">Iniciar Sesión</button>
 

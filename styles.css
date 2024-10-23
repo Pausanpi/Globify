@@ -39,8 +39,8 @@
   }
 
   .header img {
-    height: 50px;         /* Establece la altura del header */
-    max-width: 100%;      /* Asegura que la imagen no se desborde */
+    height: 40px;         /* Establece la altura del header */
+    max-width: 90%;      /* Asegura que la imagen no se desborde */
     object-fit: contain;   /* Mantiene la proporción de la imagen */
 }
 
@@ -96,7 +96,7 @@
 	overflow-y: auto; /* Activar scroll si el contenido es largo */
 	padding-top: 60px; /* Dejar espacio para el header */
 	padding-bottom: 60px; /* Reservar espacio para el footer */
-	background-color: #34212c;
+	background-color: #121212
 	color: #ccc;
   }
   

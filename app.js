@@ -3,7 +3,8 @@ const REDIRECT_URI = 'http://localhost:5500/index.html'; // Cambia esto a la URI
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const RESPONSE_TYPE = 'token';
 
-const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`;
+const SCOPES = 'user-read-private user-read-email';
+const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}`;
 
 // Manejo de eventos para el botón de inicio de sesión en index.html
 document.getElementById('login-btn')?.addEventListener('click', () => {
@@ -158,6 +159,8 @@ if (data.tracks && data.tracks.items.length > 0) {
     // Agregar eventos a los botones de reproducción
     addPlayButtonEvents();
 });
+
+  
 
 // Manejo del botón de Logout
 document.getElementById('logoutButton')?.addEventListener('click', () => {
