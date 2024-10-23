@@ -207,7 +207,7 @@ h4 {
 }
 
 .footer {
-  background-color: #1DB954; /* Color de fondo */
+  background-color: #121212; /* Color de fondo */
   color: white; /* Color del texto */
   display: flex; /* Usar flexbox */
   justify-content: center; /* Centrar horizontalmente */

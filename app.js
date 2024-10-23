@@ -102,6 +102,9 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
                 <h4>${track.name}</h4>
                 <p>${track.artists.map(artist => artist.name).join(', ')}</p>
                 <img src="${track.album.images[0]?.url || 'placeholder.jpg'}" alt="${track.name}">
+                <button class="favorite-btn" data-track-id="${track.id}">
+                    <img src="assets/heart2.png">
+                </button>
             `;
 
             // Añadir botón solo si hay preview_url
@@ -114,49 +117,46 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
 
             // Manejo del evento de clic en el botón de reproducción
             trackDiv.querySelector('.play-btn')?.addEventListener('click', () => {
-                // Si hay un audio reproduciéndose, lo pausamos
                 if (currentAudio) {
                     currentAudio.pause();
-                    // Cambia el texto del botón de reproducción anterior
                     if (currentButton) {
                         currentButton.textContent = 'Reproducir';
                     }
                 }
 
-                // Si el audio es el mismo que el actual, lo pausamos
                 if (currentAudio && currentAudio.src === track.preview_url) {
-                    currentAudio.pause(); // Pausar si ya está reproduciendo
-                    currentAudio.currentTime = 0; // Reiniciar a la posición inicial si es necesario
-                    currentAudio = null; // Limpiar la referencia
-                    currentButton.textContent = 'Reproducir'; // Cambia el texto del botón a "Reproducir"
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    currentAudio = null;
+                    currentButton.textContent = 'Reproducir';
                 } else {
-                    // Crear un nuevo audio si no es el mismo
                     currentAudio = new Audio(track.preview_url);
                     currentAudio.play().catch(error => {
                         console.error('Error al reproducir:', error);
                     });
-                    
-                    // Cambia el texto del botón a "Pausar"
                     currentButton = trackDiv.querySelector('.play-btn');
                     currentButton.textContent = 'Pausar';
 
-                    // Limpiar la referencia al finalizar
                     currentAudio.addEventListener('ended', () => {
-                        currentAudio = null; // Limpiar la referencia al final
-                        currentButton.textContent = 'Reproducir'; // Cambia el texto del botón al finalizar
+                        currentAudio = null;
+                        currentButton.textContent = 'Reproducir';
                     });
 
-                    // Manejo de clic para pausar/reproducir
                     currentButton.addEventListener('click', () => {
                         if (currentAudio.paused) {
                             currentAudio.play();
-                            currentButton.textContent = 'Pausar'; // Cambia el texto a "Pausar"
+                            currentButton.textContent = 'Pausar';
                         } else {
                             currentAudio.pause();
-                            currentButton.textContent = 'Reproducir'; // Cambia el texto a "Reproducir"
+                            currentButton.textContent = 'Reproducir';
                         }
                     });
                 }
+            });
+
+            // Manejo del evento de clic en el botón de "Me gusta"
+            trackDiv.querySelector('.favorite-btn')?.addEventListener('click', () => {
+                addToFavorites(track); // Añade a favoritos
             });
         });
     } else {
@@ -164,10 +164,60 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
     }
 });
 
-function checkEnter(event) {
-    if (event.key === 'Enter') {
-        document.getElementById('search-btn').click(); // Simula un clic en el botón de búsqueda
+// Función para añadir una canción a la lista de favoritos
+function addToFavorites(track) {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    const isFavorite = favorites.some(favorite => favorite.id === track.id);
+    if (!isFavorite) {
+        const trackData = {
+            id: track.id,
+            name: track.name,
+            artists: track.artists.map(artist => artist.name).join(', '),
+            imageUrl: track.album.images[0]?.url || 'placeholder.jpg',
+            previewUrl: track.preview_url
+        };
+
+        favorites.push(trackData);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        alert('Canción añadida a favoritos');
+    } else {
+        alert('La canción ya está en favoritos');
     }
+}
+
+// Función para cargar y mostrar los favoritos en favorites.html
+function loadFavorites() {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const favoritesListDiv = document.getElementById('favorites-list');
+
+    if (favorites.length === 0) {
+        favoritesListDiv.innerHTML = '<p>No tienes canciones favoritas.</p>';
+        return;
+    }
+
+    favoritesListDiv.innerHTML = ''; // Limpiar lista previa
+
+    favorites.forEach(track => {
+        const trackDiv = document.createElement('div');
+        trackDiv.classList.add('result-item');
+        trackDiv.innerHTML = `
+            <h4>${track.name}</h4>
+            <p>${track.artists}</p>
+            <img src="${track.imageUrl}" alt="${track.name}">
+            <button class="play-btn" data-url="${track.previewUrl}">Reproducir</button>
+        `;
+        favoritesListDiv.appendChild(trackDiv);
+
+        trackDiv.querySelector('.play-btn')?.addEventListener('click', () => {
+            const audio = new Audio(track.previewUrl);
+            audio.play();
+        });
+    });
+}
+
+if (document.getElementById('favorites-list')) {
+    loadFavorites(); // Llama a esta función en favorites.html
 }
 
 // Manejo del botón de Logout
@@ -193,7 +243,7 @@ document.getElementById('profile-img').addEventListener('click', function() {
     }
   }
 
-  document.getElementById('logo-img').addEventListener('click', () => {
+document.getElementById('logo-img').addEventListener('click', () => {
     window.location.href = 'http://localhost:5500/index.html'; // Cambia la URL según sea necesario
 });
 
