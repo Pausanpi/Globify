@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Globify</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <h1>Globify</h1>
+      <nav>
+        <button id="logoutButton" class="logout-button">Logout</button>
+      </nav>
+    </header>
+
+    <!-- Contenido principal que puede hacer scroll -->
+    <main class="main-content">
+      <section>
+        <h2>Bienvenido a Globify</h2>
+        <p>Aquí va el contenido principal.</p>
+
+        <!-- Cajas de contenido -->
+        <div class="scroll-content">
+          <div class="content-box">
+		  </div>
+
+          <div class="content-box">
+		  </div>
+
+          <div class="content-box"></div>
+		  <div class="content-box"></div>
+          <div class="content-box"></div>
+          <!-- Puedes agregar más cajas si lo necesitas -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer fijo en la parte inferior -->
+    <footer class="footer">
+      <p>Barra de reproducción o Footer Fijo</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
