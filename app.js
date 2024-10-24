@@ -208,7 +208,7 @@ function loadFavorites() {
                     Reproducir
                 </button>
                 <button class="remove-btn" data-track-id="${track.id}">
-                    <img src="assets/heart2.png" alt="Quitar de favoritos" style="width: 20px; height: 20px;">
+                    <img src="assets/heart2.png" alt="Quitar de favoritos" style="width: 13px; height: 13px;">
                 </button>
             `;
 
