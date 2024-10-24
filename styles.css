@@ -362,11 +362,11 @@ h4 {
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Menor espacio entre las cajas */
+  gap: 20px; /* Menor espacio entre las cajas */
   justify-content: center; /* Centrar cajas */
 }
 .category-box {
-  width: 150px; /* Tamaño reducido */
+  width: 200px; /* Tamaño reducido */
   padding: 10px;
   border: 1px solid #ccc;
   text-align: center;
@@ -388,7 +388,7 @@ h4 {
 /* Media Queries para pantallas pequeñas */
 @media (max-width: 600px) {
   .category-box {
-      width: 120px; /* Aún más pequeño para móviles */
+      width: 150px; /* Aún más pequeño para móviles */
       padding: 8px;
   }
   .category-title {
@@ -399,7 +399,7 @@ h4 {
 /* Media Queries para pantallas muy pequeñas, como móviles de menor resolución */
 @media (max-width: 400px) {
   .category-box {
-      width: 100px; /* Ajuste adicional para pantallas muy pequeñas */
+      width: 120px; /* Ajuste adicional para pantallas muy pequeñas */
       padding: 5px;
   }
   .category-title {
