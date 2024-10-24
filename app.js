@@ -206,6 +206,9 @@ function loadFavorites() {
                 <button class="play-btn" data-url="${track.previewUrl || ''}" style="${track.previewUrl ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.previewUrl ? '' : 'disabled'}>
                     Reproducir
                 </button>
+                <button class="pause-btn" data-url="${track.previewUrl || ''}" style="${track.previewUrl ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.previewUrl ? '' : 'disabled'}>
+                    Pausar
+                </button>
                 <button class="remove-btn" data-track-id="${track.id}">
                     <img src="assets/heart2.png" alt="Quitar de favoritos" style="width: 13px; height: 13px;">
                 </button>
@@ -249,6 +252,7 @@ window.onload = () => {
 if (document.getElementById('favorites-list')) {
 	loadFavorites();
 }
+
 
 /*------------ LOGOUT ------------*/
 
