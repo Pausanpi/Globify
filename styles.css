@@ -168,3 +168,26 @@ h4 {
 .show {
   display: block;
 }
+
+.close-btn {
+  background-color: transparent; /* Fondo transparente */
+  border: none; /* Sin borde */
+  color: #ff0000; /* Color rojo para destacar */
+  font-size: 18px; /* Tamaño de fuente más grande */
+  cursor: pointer; /* Cambia el cursor a una mano */
+}
+
+.show-more-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff; /* Color del botón */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor a una mano */
+  transition: background-color 0.3s; /* Transición suave al cambiar el color */
+}
+
+.show-more-btn:hover {
+  background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}
