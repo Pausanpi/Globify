@@ -1,3 +1,6 @@
+@import url('css/categorias.css');
+@import url('css/profile.css');
+
 * {
 	margin: 0;
 	padding: 0;
@@ -36,22 +39,22 @@
   }
 
   .header img {
-    height: 40px;         /* Establece la altura del header */
-    max-width: 90%;      /* Asegura que la imagen no se desborde */
-    object-fit: contain;   /* Mantiene la proporción de la imagen */
+    height: 40px;
+    max-width: 90%;
+    object-fit: contain;
 }
 
 #artist-search {
-    position: relative; /* Permite posicionar elementos internos */
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    padding: 10px; /* Espaciado alrededor */
+    position: relative;
+    width: 100%;
+    padding: 10px;
 	display: flex;
 	justify-content: center;
 }
 
 .search-wrapper {
-    display: flex; /* Alinea el input y el botón en fila */
-    align-items: center; /* Centra verticalmente */
+    display: flex;
+    align-items: center;
     border-radius: 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -69,15 +72,15 @@
 }
 
 #search-btn {
-    background-color: #212121; /* Color de fondo del botón */
-    border: none; /* Sin borde */
-    padding: 10px; /* Espaciado interno */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    background-color: #212121;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }
 
 #search-btn img {
-    height: 16px; /* Ajusta la altura del ícono */
-    width: 16px; /* Ajusta el ancho del ícono */
+    height: 16px;
+    width: 16px;
 }
 
 
@@ -305,121 +308,3 @@ h4 {
 .favorite-item button:hover {
   background-color: #1aa34a; /* Color al pasar el ratón */
 }
-
-/*----------- PROFILE INFO ----------- */
-
-.profile-container {
-  padding: 16px;
-  background-color: #212121;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  margin: 16px;
-  text-align: left;
-}
-
-.profile-title {
-  margin-top: 5px;
-  font-size: 1.5em;
-  color: #1db954; /* Verde de Spotify */
-}
-
-.user-info {
-  max-height: 0; /* Oculta el contenido inicialmente */
-  overflow: hidden; /* Evita que el contenido desborde */
-  transition: max-height 1s ease, opacity 1s ease; /* Transiciones más lentas */
-  opacity: 0; /* Comienza con opacidad 0 */
-}
-
-.user-info:not(.hidden) {
-  max-height: 500px; /* Ajusta este valor según el contenido */
-  opacity: 1; /* Hace que sea completamente visible */
-  transition: max-height 1s ease, opacity 1s ease; /* Transiciones más lentas */
-}
-
-.user-details {
-  margin-bottom: 8px;
-}
-
-.user-details h3 {
-  margin-bottom: 4px;
-  font-size: 1.2em;
-  color: #1db954; /* Verde de Spotify */
-}
-
-/* Estilos para pantallas más grandes */
-@media (min-width: 600px) {
-  .profile-container {
-      max-width: 500px;
-  }
-}
-
-.info-title {
-  font-size: 1.2em;
-  color: #1DB954; /* Verde de Spotify */
-  display: flex;
-  justify-content: space-between; /* Espacio entre elementos */
-  align-items: center; /* Alinea verticalmente los elementos */
-  margin-bottom: 12px; /* Espacio inferior opcional */
-  cursor: pointer;
-}
-
-#toggle-info {
-  transition: opacity 0.5s ease; /* Transición suave para opacidad */
-  opacity: 1; /* Comienza con opacidad 1 */
-  cursor: pointer; /* Cambia el cursor a puntero */
-  margin-right: 10px;
-}
-
-
-/*----------- Home ----------- */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Menor espacio entre las cajas */
-  justify-content: center; /* Centrar cajas */
-}
-.category-box {
-  width: 200px; /* Tamaño reducido */
-  padding: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  background-color: #f9f9f928;
-}
-.category-box img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
-.category-title {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-/* Media Queries para pantallas pequeñas */
-@media (max-width: 600px) {
-  .category-box {
-      width: 150px; /* Aún más pequeño para móviles */
-      padding: 8px;
-  }
-  .category-title {
-      font-size: 14px; /* Tamaño de texto más pequeño */
-  }
-}
-
-/* Media Queries para pantallas muy pequeñas, como móviles de menor resolución */
-@media (max-width: 400px) {
-  .category-box {
-      width: 120px; /* Ajuste adicional para pantallas muy pequeñas */
-      padding: 5px;
-  }
-  .category-title {
-      font-size: 12px; /* Tamaño de texto ajustado para caber mejor */
-  }
-}
-
-
-
-/* Nekane no lo rompas por favor*/
