@@ -308,3 +308,17 @@ document.addEventListener('click', function(event) {
         trackResultsDiv.innerHTML = '';  // Limpia los resultados de canciones
     }
 });
+
+// Obtener la URL actual de la página
+const currentPage = window.location.pathname;
+
+// Aplicar la clase 'active-page' al enlace correspondiente según la página actual
+if (currentPage.includes("layout.html")) {
+    document.querySelector('a[href="layout.html"]').classList.add('active-page');
+} else if (currentPage.includes("home.html")) {
+    document.querySelector('a[href="home.html"]').classList.add('active-page');
+} else if (currentPage.includes("favourites.html")) {
+    document.querySelector('a[href="favourites.html"]').classList.add('active-page');
+} else if (currentPage.includes("playlist.html")) {
+    document.querySelector('a[href="playlist.html"]').classList.add('active-page');
+}
