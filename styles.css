@@ -315,10 +315,19 @@ h4 {
   margin: 16px;
   text-align: left;
 }
-.category-title {
-	margin-top: 10px;
-	font-size: 16px;
-	font-weight: bold;
+
+.profile-title {
+  margin-top: 5px;
+  font-size: 1.5em;
+  color: #1db954; /* Verde de Spotify */
+}
+
+.user-info {
+  margin-top: 12px;
+}
+
+.user-details {
+  margin-bottom: 8px;
 }
 
 .user-details h3 {
@@ -341,9 +350,61 @@ h4 {
 
 .info-title {
   font-size: 1.2em;
-  color: #1db954; /* Verde de Spotify */
+  color: #1DB954; /* Verde de Spotify */
   display: flex;
-  justify-content: between;
+  justify-content: space-between; /* Espacio entre elementos */
+  align-items: center; /* Alinea verticalmente los elementos */
+  margin-bottom: 12px; /* Espacio inferior opcional */
+  cursor: pointer;
+}
+
+/*----------- Home ----------- */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Menor espacio entre las cajas */
+  justify-content: center; /* Centrar cajas */
+}
+.category-box {
+  width: 150px; /* Tamaño reducido */
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #f9f9f928;
+}
+.category-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.category-title {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 600px) {
+  .category-box {
+      width: 120px; /* Aún más pequeño para móviles */
+      padding: 8px;
+  }
+  .category-title {
+      font-size: 14px; /* Tamaño de texto más pequeño */
+  }
+}
+
+/* Media Queries para pantallas muy pequeñas, como móviles de menor resolución */
+@media (max-width: 400px) {
+  .category-box {
+      width: 100px; /* Ajuste adicional para pantallas muy pequeñas */
+      padding: 5px;
+  }
+  .category-title {
+      font-size: 12px; /* Tamaño de texto ajustado para caber mejor */
+  }
 }
 
 
