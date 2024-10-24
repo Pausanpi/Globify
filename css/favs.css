@@ -1,31 +1,49 @@
 .favorites-list {
-	display: flex;
-	flex-direction: column; /* Alinear elementos en columna */
-	padding: 20px;
-  }
-  
-  .favorite-item {
-	display: flex;
-	align-items: center; /* Centrar verticalmente */
-	margin-bottom: 15px; /* Espaciado entre canciones */
-  }
-  
-  .favorite-item img {
-	width: 50px; /* Tamaño de la imagen */
-	height: 50px; /* Tamaño de la imagen */
-	margin-right: 15px; /* Espaciado entre imagen y texto */
-  }
-  
-  .favorite-item button {
-	margin-left: auto; /* Empuja el botón a la derecha */
-	padding: 5px 10px; /* Espaciado del botón */
-	background-color: #1DB954; /* Color de fondo verde */
-	color: white; /* Color del texto */
-	border: none; /* Sin borde */
-	border-radius: 25px; /* Bordes redondeados */
-	cursor: pointer; /* Cambia el cursor al pasar por encima */
-  }
-  
-  .favorite-item button:hover {
-	background-color: #1aa34a; /* Color al pasar el ratón */
-  }
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.favorite-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribuye el espacio entre la imagen, texto y botones */
+    margin-bottom: 15px;
+    gap: 10px; /* Espaciado entre elementos dentro del ítem */
+}
+
+.favorite-item img {
+    width: 45px;
+    height: 45px;
+}
+
+.favorite-item div {
+    flex-grow: 1; /* Permite que el contenedor de texto ocupe el espacio restante */
+}
+
+.favorite-item div h4, .favorite-item div p {
+    margin: 0; /* Elimina el margen por defecto de los textos */
+}
+
+.favorite-item button {
+    padding: 5px 10px;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap; /* Evita que el texto del botón se divida en varias líneas */
+}
+
+.favorite-item .remove-btn {
+    background-color: transparent; /* Quitar fondo al botón de remover */
+    border: none; /* Sin borde para el botón de remover */
+    margin-left: 10px; /* Espacio entre los botones */
+    padding: 0; /* Eliminar relleno para ajustar el tamaño del icono */
+    cursor: pointer;
+}
+
+.favorite-item button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
