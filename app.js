@@ -102,7 +102,7 @@ const searchTracks = async () => {
             `;
             
             trackResultsDiv.appendChild(trackDiv);
-
+            
             // Manejo del evento de clic en el botón de reproducción
             trackDiv.querySelector('.play-btn:not([disabled])')?.addEventListener('click', () => {
                 if (currentAudio) {
@@ -147,6 +147,7 @@ const searchTracks = async () => {
                 addToFavorites(track); // Añade a favoritos
             });
         });
+        document.getElementById('hideContainer').style.display = 'none'; // Mostrar el contenedor de favoritos
     } else {
         trackResultsDiv.innerHTML = '<p>No se encontraron canciones.</p>';
     }
@@ -372,3 +373,56 @@ function createCategoryBoxes() {
 
 // Ejecutar función al cargar la página
 window.onload = createCategoryBoxes;
+
+
+/*------------ TOP TRACKS ------------*/
+const token = 'BQBOAg4KJI76yROYKz3sQDRgz0dDpBZHJfAp6dM5N8zQLcgd-mCTeXiuQbgFDOIIKSbAmmmvMYLQZDSDrKVFE75UssCOYZrSCPRYMM6t8Zknc4KQ9zHTWnGkXdnlTOsWOOXX8ay4YK4PrsnQhyZetRnM6ZBQiprK9LbuMcKw1qHA-c9jVdtOg4r2pJ78Ra1afOmnS1H4osjSBbLEXQ_1zPASa5b1qFdCaakMmQL0gtxxcV7jeGHlQsiYNrSrDrcJMzGkF_Rbag';
+
+        async function fetchWebApi(endpoint, method, body) {
+            const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                method,
+                body: JSON.stringify(body)
+            });
+            return await res.json();
+        }
+
+        async function getTopTracks() {
+            // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+            return (await fetchWebApi('v1/me/top/tracks?time_range=long_term&limit=5', 'GET')).items;
+        }
+
+        async function displayTopTracks() {
+            const topTracks = await getTopTracks(); // Función que obtiene las canciones populares
+            const topTracksContainer = document.getElementById('top-tracks');
+        
+            topTracks.forEach(track => {
+                const trackItem = document.createElement('div');
+                trackItem.classList.add('track-item');
+        
+                const trackImage = document.createElement('img');
+                trackImage.src = track.album.images[0].url; // La URL de la portada
+                trackImage.alt = track.name;
+                trackImage.classList.add('track-image');
+        
+                const trackInfo = document.createElement('div');
+                trackInfo.classList.add('track-info');
+        
+                const trackName = document.createElement('h4');
+                trackName.textContent = track.name;
+        
+                const trackArtist = document.createElement('p');
+                trackArtist.textContent = track.artists.map(artist => artist.name).join(', ');
+        
+                trackInfo.appendChild(trackName);
+                trackInfo.appendChild(trackArtist);
+                trackItem.appendChild(trackImage);
+                trackItem.appendChild(trackInfo);
+                topTracksContainer.appendChild(trackItem);
+            });
+        }
+        
+        // Llama a la función para mostrar las canciones populares
+        displayTopTracks();
