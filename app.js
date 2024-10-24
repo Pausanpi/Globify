@@ -86,18 +86,18 @@ const searchTracks = async () => {
             const trackDiv = document.createElement('div');
             trackDiv.classList.add('result-item');
             trackDiv.innerHTML = `
-                <h4>${track.name}</h4>
-                <p>${track.artists.map(artist => artist.name).join(', ')}</p>
-                <img src="${track.album.images[0]?.url || 'placeholder.jpg'}" alt="${track.name}">
-                <button class="favorite-btn" data-track-id="${track.id}">
-                    <img src="assets/heart2.png">
-                </button>
-            `;
-
-            // Añadir botón de reproducir
-            trackDiv.innerHTML += `
-                <button class="play-btn" data-url="${track.preview_url || ''}" style="${track.preview_url ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.preview_url ? '' : 'disabled'}>
+				<img src="${track.album.images[0]?.url || 'placeholder.jpg'}" alt="${track.name}">
+				<div>
+					<h4>${track.name}</h4>
+                	<p>${track.artists.map(artist => artist.name).join(', ')}</p>
+				</div>
+                
+				<button class="play-btn" data-url="${track.preview_url || ''}" style="${track.preview_url ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.preview_url ? '' : 'disabled'}>
                     Reproducir
+                </button>
+                
+                <button class="favorite-btn" data-track-id="${track.id}">
+                    <img src="assets/me-gusta.png" style="width: 13px; height: 13px">
                 </button>
             `;
             

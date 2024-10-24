@@ -22,7 +22,11 @@
 }
 
 .favorite-item div h4, .favorite-item div p {
-    margin: 0; /* Elimina el margen por defecto de los textos */
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
+    overflow: hidden;
+    margin: 0;
 }
 
 .favorite-item button {
@@ -36,10 +40,10 @@
 }
 
 .favorite-item .remove-btn {
-    background-color: transparent; /* Quitar fondo al botón de remover */
-    border: none; /* Sin borde para el botón de remover */
-    margin-left: 10px; /* Espacio entre los botones */
-    padding: 0; /* Eliminar relleno para ajustar el tamaño del icono */
+    background-color: transparent;
+    border: none;
+    margin-left: 10px;
+    padding: 0;
     cursor: pointer;
 }
 

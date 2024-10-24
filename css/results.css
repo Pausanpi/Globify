@@ -1,36 +1,48 @@
-.results-container {
-    display: flex; /* Usar Flexbox para alinear las columnas */
-    justify-content: space-between; /* Espacio entre las columnas */
-    margin-top: 20px; /* Espacio entre la barra de búsqueda y los resultados */
-	columns: 2;
-}
 
-.results-grid {
-    display: flex; /* Usar Flexbox para mostrar resultados en filas */
-    flex-wrap: wrap; /* Permitir que los elementos se ajusten a varias filas */
-    flex: 1; /* Las columnas ocuparán espacio equitativamente */
-    margin: 0 10px; /* Margen entre las columnas */
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+.result-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 15px;
 	gap: 10px;
 }
 
-.result-item {
-    margin: 5px; /* Espacio entre los resultados individuales */
-    text-align: center; /* Centrar el texto y las imágenes */
-    flex: 1 1 45%; /* Ajustar el ancho a un 45% para que se vean dos en una fila */
-    box-sizing: border-box; /* Asegura que el margen no afecte el ancho total */
-    background-color: #fff; /* Fondo blanco para las tarjetas */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para un efecto de elevación */
-    padding: 10px; /* Espacio interno */
-    transition: transform 0.2s; /* Animación al pasar el ratón */
-}
-
-.result-item:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
-}
-
 .result-item img {
-    width: 100%; /* Hacer que las imágenes ocupen el ancho completo del contenedor */
-    border-radius: 4px; /* Bordes redondeados para las imágenes */
+	width: 45px;
+	height: 45px;
+}
+
+.result-item div {
+	flex-grow: 1;
+}
+
+.result-item div h4, .result-item div p {
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 200px;
+    overflow: hidden;
+	margin: 0;
+}
+
+.result-item button {
+	padding: 5px 10px;
+	background-color: #1DB954;
+	color: white;
+	border: none;
+	border-radius: 25px;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.result-item .favorite-btn {
+    background-color: transparent;
+    border: none;
+    margin-left: 10px;
+    padding: 0;
+    cursor: pointer;
+}
+
+.result-item button:disabled {
+	background-color: grey;
+	cursor: not-allowed;
 }
