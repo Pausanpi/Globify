@@ -86,18 +86,18 @@ const searchTracks = async () => {
             const trackDiv = document.createElement('div');
             trackDiv.classList.add('result-item');
             trackDiv.innerHTML = `
-				<img src="${track.album.images[0]?.url || 'placeholder.jpg'}" alt="${track.name}">
-				<div>
-					<h4>${track.name}</h4>
-                	<p>${track.artists.map(artist => artist.name).join(', ')}</p>
-				</div>
-                
-				<button class="play-btn" data-url="${track.preview_url || ''}" style="${track.preview_url ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.preview_url ? '' : 'disabled'}>
-                    Reproducir
-                </button>
-                
+                <h4>${track.name}</h4>
+                <p>${track.artists.map(artist => artist.name).join(', ')}</p>
+                <img src="${track.album.images[0]?.url || 'placeholder.jpg'}" alt="${track.name}">
                 <button class="favorite-btn" data-track-id="${track.id}">
-                    <img src="assets/me-gusta.png" style="width: 13px; height: 13px">
+                    <img src="assets/heart2.png">
+                </button>
+            `;
+
+            // Añadir botón de reproducir
+            trackDiv.innerHTML += `
+                <button class="play-btn" data-url="${track.preview_url || ''}" style="${track.preview_url ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.preview_url ? '' : 'disabled'}>
+                    Reproducir
                 </button>
             `;
             
@@ -376,53 +376,55 @@ window.onload = createCategoryBoxes;
 
 
 /*------------ TOP TRACKS ------------*/
+
 const token = 'BQBOAg4KJI76yROYKz3sQDRgz0dDpBZHJfAp6dM5N8zQLcgd-mCTeXiuQbgFDOIIKSbAmmmvMYLQZDSDrKVFE75UssCOYZrSCPRYMM6t8Zknc4KQ9zHTWnGkXdnlTOsWOOXX8ay4YK4PrsnQhyZetRnM6ZBQiprK9LbuMcKw1qHA-c9jVdtOg4r2pJ78Ra1afOmnS1H4osjSBbLEXQ_1zPASa5b1qFdCaakMmQL0gtxxcV7jeGHlQsiYNrSrDrcJMzGkF_Rbag';
 
-        async function fetchWebApi(endpoint, method, body) {
-            const res = await fetch(`https://api.spotify.com/${endpoint}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                method,
-                body: JSON.stringify(body)
-            });
-            return await res.json();
-        }
+async function fetchWebApi(endpoint, method, body) {
+    const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        method,
+        body: JSON.stringify(body)
+    });
+    return await res.json();
+}
 
-        async function getTopTracks() {
-            // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
-            return (await fetchWebApi('v1/me/top/tracks?time_range=long_term&limit=5', 'GET')).items;
-        }
+async function getTopTracks() {
+    // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+    return (await fetchWebApi('v1/me/top/tracks?time_range=long_term&limit=5', 'GET')).items;
+}
 
-        async function displayTopTracks() {
-            const topTracks = await getTopTracks(); // Función que obtiene las canciones populares
-            const topTracksContainer = document.getElementById('top-tracks');
+async function displayTopTracks() {
+    const topTracks = await getTopTracks(); // Función que obtiene las canciones populares
+    const topTracksContainer = document.getElementById('top-tracks');
+
+    topTracks.forEach(track => {
+        const trackItem = document.createElement('div');
+        trackItem.classList.add('track-item');
+
+        const trackImage = document.createElement('img');
+        trackImage.src = track.album.images[0].url; // La URL de la portada
+        trackImage.alt = track.name;
+        trackImage.classList.add('track-image');
+
+        const trackInfo = document.createElement('div');
+        trackInfo.classList.add('track-info');
+
+        const trackName = document.createElement('h4');
+        trackName.textContent = track.name;
+
+        const trackArtist = document.createElement('p');
+        trackArtist.textContent = track.artists.map(artist => artist.name).join(', ');
         
-            topTracks.forEach(track => {
-                const trackItem = document.createElement('div');
-                trackItem.classList.add('track-item');
+        trackInfo.appendChild(trackName);
+           trackInfo.appendChild(trackArtist);
+        trackItem.appendChild(trackImage);
+        trackItem.appendChild(trackInfo);
+        topTracksContainer.appendChild(trackItem);
+    });
+}
         
-                const trackImage = document.createElement('img');
-                trackImage.src = track.album.images[0].url; // La URL de la portada
-                trackImage.alt = track.name;
-                trackImage.classList.add('track-image');
-        
-                const trackInfo = document.createElement('div');
-                trackInfo.classList.add('track-info');
-        
-                const trackName = document.createElement('h4');
-                trackName.textContent = track.name;
-        
-                const trackArtist = document.createElement('p');
-                trackArtist.textContent = track.artists.map(artist => artist.name).join(', ');
-        
-                trackInfo.appendChild(trackName);
-                trackInfo.appendChild(trackArtist);
-                trackItem.appendChild(trackImage);
-                trackItem.appendChild(trackInfo);
-                topTracksContainer.appendChild(trackItem);
-            });
-        }
-        
-        // Llama a la función para mostrar las canciones populares
-        displayTopTracks();
+// Llama a la función para mostrar las canciones populares
+displayTopTracks();
+
