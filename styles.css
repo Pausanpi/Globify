@@ -16,7 +16,7 @@
 	overflow-x: hidden;
 	margin: 0;
   }
-  
+
   /* Contenedor principal de la aplicación */
   .app-container {
 	display: flex;

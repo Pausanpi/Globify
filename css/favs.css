@@ -1,7 +1,7 @@
 .favorites-list {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 10px;
 }
 
 .favorite-item {
@@ -24,7 +24,7 @@
 .favorite-item div h4, .favorite-item div p {
 	white-space: nowrap;
     text-overflow: ellipsis;
-    width: 200px;
+    width: 150px;
     overflow: hidden;
     margin: 0;
 }
