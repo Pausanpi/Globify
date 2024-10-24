@@ -345,3 +345,50 @@ function toggleProfileInfo() {
     userInfo.classList.toggle('hidden'); // Alterna la clase 'hidden'
 }
 
+
+
+//------ categorias ----------
+
+const categories = [
+	{ name: 'Música', image: 'https://cdns-images.dzcdn.net/images/cover/2370f31d7a02c149f2748d01c4a7d220/0x1900-000000-80-0-0.jpg'},
+	{ name: 'Pódcast', image: 'https://cdns-images.dzcdn.net/images/talk/4b3edf73117166f810e2fc1ea4ded1e8/0x1900-000000-80-0-0.jpg'},
+	{ name: 'Eventos en directo', image: 'https://image.ondacero.es/clipping/cmsimages02/2024/09/30/2BA5906F-FE41-4003-B99A-899F4A0452F7/sold-out-saiko-despedir-selvatic-consolidado-como-festival-verano-malaga_104.jpg?crop=3840,3840,x964,y0&width=1200&height=1200&optimize=low&format=webply'},
+	{ name: 'Especialmente para ti', image: 'https://image.europafm.com/clipping/cmsimages02/2024/08/21/A4FF1E95-1AA6-4383-AD54-F69DC1DF2007/sabrina-carpenter-lanza-sexto-album-short-sweet_104.jpg?crop=858,858,x0,y0&width=1200&height=1200&optimize=low&format=webply'},
+	{ name: 'Novedades', image: 'https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/2d/1a/7d/2d1a7d91-587e-0ceb-d434-327bd66d9e86/075679628312.jpg/1200x1200bf-60.jpg'},
+	{ name: 'Latina', image: 'https://cdns-images.dzcdn.net/images/cover/b29d1070377b784384c2456093f96a66/0x1900-000000-80-0-0.jpg'},
+	{ name: 'Pop', image: 'https://ca-times.brightspotcdn.com/dims4/default/becaa9d/2147483647/strip/true/crop/3000x3000+0+0/resize/1200x1200!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fde%2F78%2Fd629fd914c66a25f0114a16bdba6%2Fsour-final.jpg' },
+	{ name: 'Rock', image: 'https://fotografias.flooxernow.com/clipping/cmsimages02/2024/10/18/D4459191-A53C-4064-81BE-93284286A088/lenny-kravitz-actuacion-rock-rio-madrid-2012_104.jpg?crop=480,480,x107,y0&width=1200&height=1200&optimize=low&format=webply' },
+	{ name: 'Jazz', image: 'https://cdns-images.dzcdn.net/images/cover/d6331a9b0c447602b6dced52ef3616ff/0x1900-000000-80-0-0.jpg' },
+	{ name: 'Hip Hop', image: 'https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/c9/89/1a/c9891a80-d618-539a-42a8-37bbbecb3300/artwork.jpg/1200x1200bb.jpg' }
+];
+
+// Función para crear dinámicamente las cajas de categorías
+function createCategoryBoxes() {
+	const container = document.getElementById('category-container');
+
+	categories.forEach(category => {
+		// Crear caja de categoría
+		const categoryBox = document.createElement('div');
+		categoryBox.classList.add('category-box');
+
+		// Crear imagen
+		const img = document.createElement('img');
+		img.src = category.image;
+		img.alt = category.name;
+
+		// Crear título
+		const title = document.createElement('div');
+		title.classList.add('category-title');
+		title.textContent = category.name;
+
+		// Añadir imagen y título a la caja
+		categoryBox.appendChild(img);
+		categoryBox.appendChild(title);
+
+		// Añadir la caja al contenedor
+		container.appendChild(categoryBox);
+	});
+}
+
+// Ejecutar función al cargar la página
+window.onload = createCategoryBoxes;
