@@ -164,6 +164,8 @@ artistInput.addEventListener('keypress', (event) => {
 
 /*------------ FAVORITOS ------------ */
 
+let currentPlayButton = null; // Para mantener el botón de reproducción actual
+
 // Función para añadir una canción a la lista de favoritos
 function addToFavorites(track) {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -206,9 +208,6 @@ function loadFavorites() {
                 <button class="play-btn" data-url="${track.previewUrl || ''}" style="${track.previewUrl ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.previewUrl ? '' : 'disabled'}>
                     Reproducir
                 </button>
-                <button class="pause-btn" data-url="${track.previewUrl || ''}" style="${track.previewUrl ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.previewUrl ? '' : 'disabled'}>
-                    Pausar
-                </button>
                 <button class="remove-btn" data-track-id="${track.id}">
                     <img src="assets/heart2.png" alt="Quitar de favoritos" style="width: 13px; height: 13px;">
                 </button>
@@ -217,13 +216,13 @@ function loadFavorites() {
             favoritesListDiv.appendChild(favoriteItemDiv);
 
             // Manejo del evento de clic en el botón de reproducción
-            favoriteItemDiv.querySelector('.play-btn:not([disabled])')?.addEventListener('click', () => {
-                playTrack(track.previewUrl); // Implementa la función de reproducción
-            });
-
-            // Manejo del evento de clic en el botón de pausa
-            favoriteItemDiv.querySelector('.pause-btn:not([disabled])')?.addEventListener('click', () => {
-                pauseTrack(); // Implementa la función de pausa
+            const playButton = favoriteItemDiv.querySelector('.play-btn:not([disabled])');
+            playButton?.addEventListener('click', () => {
+                if (currentAudio && currentAudio.src === track.previewUrl) {
+                    pauseTrack(playButton); // Si la canción está en reproducción, pausar
+                } else {
+                    playTrack(track.previewUrl, playButton); // Si no, reproducir
+                }
             });
 
             // Manejo del evento de clic en el botón de quitar
@@ -243,19 +242,28 @@ function removeFromFavorites(trackId) {
 }
 
 // Función para reproducir la canción
-function playTrack(previewUrl) {
+function playTrack(previewUrl, playButton) {
     if (currentAudio) { // Si hay un audio en reproducción, lo detiene
         currentAudio.pause();
+        currentPlayButton.textContent = 'Reproducir'; // Restablecer el texto del botón anterior
     }
 
     currentAudio = new Audio(previewUrl);
     currentAudio.play(); // Reproducir la canción
+    currentPlayButton = playButton; // Guardar el botón actual
+    playButton.textContent = 'Pausar'; // Cambiar el texto del botón a "Pausar"
+
+    // Añadir un manejador de eventos para pausar el audio cuando termine
+    currentAudio.onended = () => {
+        playButton.textContent = 'Reproducir'; // Restablecer el texto al finalizar
+    };
 }
 
 // Función para pausar la canción
-function pauseTrack() {
+function pauseTrack(playButton) {
     if (currentAudio) {
         currentAudio.pause(); // Pausar el audio actual
+        playButton.textContent = 'Reproducir'; // Cambiar el texto del botón a "Reproducir"
     }
 }
 
@@ -268,7 +276,6 @@ window.onload = () => {
 if (document.getElementById('favorites-list')) {
     loadFavorites(); 
 }
-
 
 /*------------ LOGOUT ------------*/
 
