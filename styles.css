@@ -256,21 +256,21 @@ h4 {
   filter: brightness(1.8) drop-shadow(0px 0px 15px rgba(0, 255, 0, 1)); /* Verde brillante */
 }
 
-.music-category {
+/*.music-category {
   margin: 20px 0;
 }
 
 .music-category h3 {
   margin-bottom: 10px;
   font-size: 24px;
-  color: #1db954; /* Verde de Spotify */
+  color: #1db954;
 }
 
 .results-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
-}
+}*/
 
 
 .favorites-list {
@@ -303,4 +303,54 @@ h4 {
 
 .favorite-item button:hover {
   background-color: #1aa34a; /* Color al pasar el ratón */
+}
+
+/*  home categorias */
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px; /* Menor espacio entre las cajas */
+	justify-content: center; /* Centrar cajas */
+}
+.category-box {
+	width: 200px; /* Tamaño reducido */
+	padding: 10px;
+	border: 1px solid #ccc;
+	text-align: center;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	background-color: #f9f9f92a;
+}
+.category-box img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 5px;
+}
+.category-title {
+	margin-top: 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 600px) {
+	.category-box {
+		width: 150px; /* Aún más pequeño para móviles */
+		padding: 8px;
+	}
+	.category-title {
+		font-size: 14px; /* Tamaño de texto más pequeño */
+	}
+}
+
+/* Media Queries para pantallas muy pequeñas, como móviles de menor resolución */
+@media (max-width: 400px) {
+	.category-box {
+		width: 120px; /* Ajuste adicional para pantallas muy pequeñas */
+		padding: 5px;
+	}
+	.category-title {
+		font-size: 12px; /* Tamaño de texto ajustado para caber mejor */
+	}
 }
