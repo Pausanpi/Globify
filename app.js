@@ -94,8 +94,8 @@ const searchTracks = async () => {
 				<button class="play-btn" data-url="${track.preview_url || ''}" style="${track.preview_url ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.preview_url ? '' : 'disabled'}>
                     Reproducir
                 </button>
-				<button class="favorite-btn" data-track-id="${track.id}">
-    				<img src="assets/me-gusta.png" style="height: 13px; width: 13px" class="favorite-img">
+				<button class="favorite-btn" data-track-id="${track.id}" onclick="toggleFavorite(this)">
+    				<img src="assets/like-icon-like.png" style="height: 15px; width: 15px" class="favorite-img">
 				</button>
 				`;
 
@@ -141,15 +141,34 @@ const searchTracks = async () => {
 			});
 
 			// Manejo del evento de clic en el botón de "Me gusta"
-			trackDiv.querySelector('.favorite-btn')?.addEventListener('click', () => {
+			/*trackDiv.querySelector('.favorite-btn')?.addEventListener('click', () => {
 				addToFavorites(track); // Añade a favoritos
+			});*/
+			trackDiv.querySelector('.favorite-btn')?.addEventListener('click', () => {
+				if (isTrackInFavorites(track.id)) {
+					removeFromFavorites(track); // Elimina de favoritos si ya está
+				} else {
+					addToFavorites(track); // Añade a favoritos si no está
+				}
+			
+				toggleFavoriteIcon(trackDiv); // Cambia la imagen del botón
 			});
+			
 		});
 		document.getElementById('hideContainer').style.display = 'none'; // Mostrar el contenedor de favoritos
 	} else {
 		trackResultsDiv.innerHTML = '<p>No se encontraron canciones.</p>';
 	}
 };
+
+function toggleFavorite(button) {
+	const img = button.querySelector('.favorite-img'); // Obtiene la imagen del botón clicado
+
+	// Cambia la imagen según el estado actual
+	img.src = img.src.includes('like-icon-like.png')
+		? 'assets/like-icon-liked.png'
+		: 'assets/like-icon-like.png';
+}
 
 // Añadir evento de clic al botón de búsqueda
 searchBtn.addEventListener('click', searchTracks);
@@ -209,7 +228,7 @@ function loadFavorites() {
                     Reproducir
                 </button>
                 <button class="remove-btn" data-track-id="${track.id}">
-                    <img src="assets/heart2.png" alt="Quitar de favoritos" style="width: 13px; height: 13px;">
+                    <img src="assets/like-icon-liked.png" alt="Quitar de favoritos" style="width: 13px; height: 13px;">
                 </button>
             `;
 
