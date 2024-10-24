@@ -342,7 +342,19 @@ window.onload = function() {
 
 function toggleProfileInfo() {
     const userInfo = document.querySelector('.user-info');
-    userInfo.classList.toggle('hidden'); // Alterna la clase 'hidden'
+    const toggleInfo = document.getElementById('toggle-info');
+
+    // Alterna la clase 'hidden'
+    const isHidden = userInfo.classList.toggle('hidden');
+
+    // Cambia la opacidad a 0 para desvanecer
+    toggleInfo.style.opacity = '0';
+
+    // Cambia el texto entre "..." y "X" después de la transición
+    setTimeout(() => {
+        toggleInfo.textContent = isHidden ? '...' : 'X';
+        toggleInfo.style.opacity = '1'; // Restaura la opacidad
+    }, 200); // Espera a que la opacidad se desvanezca
 }
 
 
