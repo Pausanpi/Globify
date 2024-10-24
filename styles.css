@@ -244,8 +244,13 @@ h4 {
   display: block; /* Asegura que el icono se comporte como un bloque */
 }
 
+.menu-item:active .menu-icon {
+  filter:  drop-shadow(opx 4px 4px green);
+}
 
-
+.menu-item.active p {
+  color: #1db954; /* Verde de Spotify */
+}
 
 
 .music-category {
