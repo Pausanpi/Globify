@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+}
+  
+/* Contenedor principal de la aplicación */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+  
+/* Header fijo en la parte superior */
+.header {
+    background-color: #120c10;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header img {
+    height: 40px;
+    max-width: 90%;
+    object-fit: contain;
+}
+
+/* Espacio para el contenido principal que puede hacer scroll */
+.main-content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto; /* Activar scroll si el contenido es largo */
+    padding-top: 60px; /* Dejar espacio para el header */
+    padding-bottom: 60px; /* Reservar espacio para el footer */
+    background-color: black;
+    color: #ccc;
+    display: flex; /* Habilitar flexbox */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    flex-direction: column;
+}
+
+/*---------- GIF PRINCIPAL ----------*/
+
+.gif-container {
+    display: inline-block; /* Necesario para que el contenedor respete el centrado */
+    width: 220px; /* Ancho deseado */
+    height: 220px; /* Alto deseado */
+    overflow: hidden; /* Oculta el contenido que desborda el contenedor */
+    position: relative;
+    border-radius: 40px;
+    margin-bottom: 200px;
+}
+
+.gif-container img {
+    position: absolute;
+    top: -140px; /* Ajusta para centrar la parte del GIF que deseas mostrar */
+    left: -140px; /* Ajusta para centrar la parte del GIF que deseas mostrar */
+}
+
+/*---------- BOTON LOGIN ----------*/
+
+.introduction {
+    text-align: center;
+    margin-bottom: 150px;
+    margin-top: 30px;
+    font-size: 1.5em;
+}
