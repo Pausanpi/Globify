@@ -1,0 +1,57 @@
+.footer {
+	background-color: #121212; /* Color de fondo */
+	color: white; /* Color del texto */
+	display: flex; /* Usar flexbox */
+	justify-content: center; /* Centrar horizontalmente */
+	padding: 10px; /* Espaciado alrededor */
+	align-items: center; /* Centrar verticalmente */
+	height: 50px; /* Altura del footer */
+	position: fixed; /* Fijo en la parte inferior */
+	bottom: 0; /* Posición inferior */
+	left: 0; /* Lado izquierdo */
+	right: 0; /* Lado derecho */
+	z-index: 1000; /* Superponer sobre otros elementos */
+  }
+  
+  .icon-menu {
+	display: flex; /* Usar flexbox para alinear los iconos */
+	justify-content: space-around; /* Espaciado automático entre iconos */
+	align-items: center; /* Centrar los iconos verticalmente */
+	width: 90%; /* Asegúrate de que ocupe todo el ancho */
+  }
+  .menu-item {
+	margin: 0 20px; /* Espacio entre los iconos */
+	text-align: center; /* Centrar el texto en cada ítem */
+	transition: transform 0.2s; /* Efecto de transformación al pasar el ratón */
+  }
+  
+  .menu-item:hover {
+	transform: scale(1.1); /* Aumentar ligeramente el tamaño al pasar el ratón */
+  }
+  
+  .menu-icon {
+	width: 35px; /* Ancho del icono */
+	height: 35px; /* Altura del icono */
+	cursor: pointer; /* Cambia el cursor al pasar por encima */
+	display: block; /* Asegura que el icono se comporte como un bloque */
+  }
+  
+  .menu-icon:hover {
+	filter: brightness(1.5); /* Aumenta el brillo al pasar el ratón */
+  }
+  
+  .menu-icon:active {
+	filter: brightness(2.5) drop-shadow(0px 0px 30px rgba(0, 255, 0, 1)); /* Sombra verde más brillante al hacer clic */
+  }
+  
+  .active-page .menu-icon {
+	filter: brightness(1.8) drop-shadow(0px 0px 15px rgba(0, 255, 0, 1)); /* Verde brillante */
+  }
+
+  /* En pantallas más grandes, puedes ajustar el diseño si es necesario */
+@media (min-width: 769px) {
+	.footer {
+		justify-content: flex-end;
+		padding-right: 20px;
+	}
+  }
