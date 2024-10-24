@@ -163,8 +163,6 @@ artistInput.addEventListener('keypress', (event) => {
 });
 
 
-
-
 /*------------ FAVORITOS ------------ */
 
 // Función para añadir una canción a la lista de favoritos
@@ -183,9 +181,6 @@ function addToFavorites(track) {
 
         favorites.push(trackData);
         localStorage.setItem('favorites', JSON.stringify(favorites));
-        alert('Canción añadida a favoritos');
-    } else {
-        alert('La canción ya está en favoritos');
     }
 }
 
@@ -209,17 +204,35 @@ function loadFavorites() {
                     <h4>${track.name}</h4>
                     <p>${track.artists}</p>
                 </div>
-                <button class="play-btn" data-url="${track.previewUrl}">Reproducir</button>
+                <button class="play-btn" data-url="${track.previewUrl || ''}" style="${track.previewUrl ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.previewUrl ? '' : 'disabled'}>
+                    Reproducir
+                </button>
+                <button class="remove-btn" data-track-id="${track.id}">
+                    <img src="assets/heart2.png" alt="Quitar de favoritos" style="width: 20px; height: 20px;">
+                </button>
             `;
 
             favoritesListDiv.appendChild(favoriteItemDiv);
 
             // Manejo del evento de clic en el botón de reproducción
-            favoriteItemDiv.querySelector('.play-btn').addEventListener('click', () => {
+            favoriteItemDiv.querySelector('.play-btn:not([disabled])')?.addEventListener('click', () => {
                 playTrack(track.previewUrl); // Implementa la función de reproducción
+            });
+
+            // Manejo del evento de clic en el botón de quitar
+            favoriteItemDiv.querySelector('.remove-btn').addEventListener('click', () => {
+                removeFromFavorites(track.id);
             });
         });
     }
+}
+
+// Función para quitar una canción de la lista de favoritos
+function removeFromFavorites(trackId) {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const updatedFavorites = favorites.filter(track => track.id !== trackId);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    loadFavorites(); // Recargar la lista de favoritos
 }
 
 // Función para reproducir la canción
@@ -233,9 +246,9 @@ window.onload = () => {
     loadFavorites(); // Cargar favoritos al inicio
 };
 
-
+// Llama a esta función en favorites.html si existe el contenedor
 if (document.getElementById('favorites-list')) {
-    loadFavorites(); // Llama a esta función en favorites.html
+    loadFavorites(); 
 }
 
 /*------------ LOGOUT ------------*/
