@@ -1,84 +1,100 @@
-* {
+/* Estilos generales */
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Fondo oscuro Spotify */
+    color: #fff; /* Texto blanco */
 }
-  
-html, body {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-    margin: 0;
-}
-  
-/* Contenedor principal de la aplicación */
+
 .app-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    position: relative;
+    min-height: 100vh; /* Asegura que el contenedor principal llene toda la altura */
 }
-  
-/* Header fijo en la parte superior */
+
+/* Header Styles */
 .header {
-    background-color: #120c10;
-    color: white;
+    background-color: #1DB954; /* Verde Spotify */
     display: flex;
-    justify-content: space-between;
-    padding: 10px;
+    justify-content: center;
     align-items: center;
-    height: 50px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
+    padding: 20px;
 }
 
 .header img {
     height: 40px;
-    max-width: 90%;
-    object-fit: contain;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-/* Espacio para el contenido principal que puede hacer scroll */
+.header img:hover {
+    transform: scale(1.1); /* Animación al pasar el mouse sobre el logo */
+}
+
+/* Main Content */
 .main-content {
-    padding: 20px;
-    flex: 1;
-    overflow-y: auto; /* Activar scroll si el contenido es largo */
-    padding-top: 60px; /* Dejar espacio para el header */
-    padding-bottom: 60px; /* Reservar espacio para el footer */
-    background-color: black;
-    color: #ccc;
-    display: flex; /* Habilitar flexbox */
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    display: flex;
     flex-direction: column;
-}
-
-/*---------- GIF PRINCIPAL ----------*/
-
-.gif-container {
-    display: inline-block; /* Necesario para que el contenedor respete el centrado */
-    width: 220px; /* Ancho deseado */
-    height: 220px; /* Alto deseado */
-    overflow: hidden; /* Oculta el contenido que desborda el contenedor */
-    position: relative;
-    border-radius: 40px;
-    margin-bottom: 200px;
-}
-
-.gif-container img {
-    position: absolute;
-    top: -140px; /* Ajusta para centrar la parte del GIF que deseas mostrar */
-    left: -140px; /* Ajusta para centrar la parte del GIF que deseas mostrar */
-}
-
-/*---------- BOTON LOGIN ----------*/
-
-.introduction {
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Permite que este contenido crezca y llene el espacio disponible */
     text-align: center;
-    margin-bottom: 150px;
-    margin-top: 30px;
-    font-size: 1.5em;
+    padding-top: 50px;
+    padding-bottom: 20px; /* Añadir un espaciado inferior */
 }
+
+.introduction h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    animation: glow 1.5s infinite alternate; /* Añadir parpadeo suave */
+    color: #1DB954; /* Verde Spotify */
+}
+
+.introduction button {
+    background-color: #1DB954;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.introduction button:hover {
+    background-color: #1aa34a; /* Color más oscuro al hacer hover */
+    transform: scale(1.05); /* Efecto de aumento al hacer hover */
+}
+
+.introduction p {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: #b3b3b3; /* Color gris claro */
+}
+
+/* Animación de parpadeo para el título */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px #1DB954, 0 0 20px #1DB954, 0 0 30px #1DB954;
+    }
+    100% {
+        text-shadow: 0 0 20px #1DB954, 0 0 30px #1DB954, 0 0 40px #1DB954;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #191818;
+    padding: 20px;
+    text-align: center;
+    color: #b3b3b3;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+/*--------- ALBUMES ----------*/

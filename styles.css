@@ -198,3 +198,115 @@ h4 {
 .show-more-btn:hover {
   background-color: #0056b3; /* Color más oscuro al pasar el mouse */
 }
+
+/*--------- TOP TRACKS ----------*/
+
+/* Estilos generales para el contenedor principal */
+.content-container {
+  display: flex; /* Usar Flexbox para disposición en columnas */
+  justify-content: space-between; /* Espacio entre columnas */
+  align-items: flex-start; /* Alinear elementos al inicio de la columna */
+  margin: 20px; /* Margen del contenedor */
+}
+
+/* Sección para las canciones populares */
+#top-tracks-container {
+  margin: 20px; /* Margen alrededor de la sección */
+  padding: 20px; /* Espaciado interno */
+  width: 100%; /* Ancho total */
+  max-width: 400px; /* Ancho máximo para la sección de canciones */
+  background-color: #282828; /* Fondo gris oscuro */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+  color: #fff; /* Texto blanco */
+  text-align: center; /* Centrar el texto */
+}
+
+/* Estilo del contenedor de canciones */
+#top-tracks {
+  display: grid; /* Usar grid para una mejor disposición */
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Columnas responsivas */
+  gap: 15px; /* Espaciado entre canciones */
+}
+
+/* Estilo para cada canción */
+.track-item {
+  display: flex; /* Usar flexbox para disposición horizontal */
+  flex-direction: column; /* Disposición vertical */
+  align-items: center; /* Centrar horizontalmente */
+  background-color: #1c1c1c; /* Fondo de cada canción */
+  padding: 10px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  transition: background-color 0.3s; /* Efecto de transición al pasar el mouse */
+}
+
+/* Efecto hover */
+.track-item:hover {
+  background-color: #333; /* Fondo más claro al pasar el mouse */
+}
+
+/* Estilo para la imagen de la canción */
+.track-image {
+  width: 100%; /* Ancho total */
+  height: auto; /* Alto automático para mantener la proporción */
+  max-width: 100px; /* Ancho máximo de la imagen */
+  border-radius: 5px; /* Bordes redondeados en la imagen */
+  margin-bottom: 5px; /* Margen inferior */
+}
+
+/* Estilo para la información de la canción */
+.track-info h4 {
+  margin: 0; /* Sin margen */
+  font-size: 1rem; /* Tamaño de fuente para el nombre de la canción */
+}
+
+.track-info p {
+  margin: 0; /* Sin margen */
+  font-size: 0.9rem; /* Tamaño de fuente para el nombre del artista */
+  color: #b3b3b3; /* Color gris claro para el artista */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .content-container {
+      flex-direction: column; /* Cambiar a disposición vertical en móviles */
+      align-items: center; /* Centrar horizontalmente los elementos */
+      text-align: center; /* Centrar texto en móviles */
+  }
+
+  #top-tracks-container {
+      padding: 15px; /* Espaciado interno reducido */
+      width: 90%; /* Ancho ajustado para móviles */
+      max-width: 500px; /* Ancho máximo ajustado para móviles */
+  }
+
+  #top-tracks-container h2 {
+      font-size: 1.25rem; /* Tamaño de fuente más pequeño para el título */
+  }
+
+  .track-item {
+      padding: 8px; /* Espaciado interno reducido */
+  }
+
+  .track-image {
+      max-width: 80px; /* Ajustar el tamaño máximo de la imagen */
+  }
+
+  .track-info h4 {
+      font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+  }
+
+  .track-info p {
+      font-size: 0.8rem; /* Tamaño de fuente más pequeño para el artista */
+  }
+}
+
+#track-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #1db954;
+}
+
+
+
+

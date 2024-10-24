@@ -1,89 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Globify</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globify</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <div class="app-container">
-    <!-- Header -->
-    <header class="header">
-      <img id="logo-img" src="assets/logoBlanco.png" alt="Logo" style="cursor: pointer;">
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <img id="logo-img" src="assets/logoBlanco.png" alt="Logo" style="cursor: pointer;">
 
-      <div id="artist-search"> <!-- Asegúrate de ocultar este div inicialmente -->
-        <div class="search-wrapper">
-          <input type="text" id="artist-name" placeholder="¿Qué quieres repoducir?" onkeydown="checkEnter(event)">
-          <button id="search-btn">
-            <img src="assets/lupa.png" alt="Buscar">
-          </button>
-        </div>
-      </div>
-
-      <!-- Contenedor para la imagen de perfil y el menú de logout -->
-      <div class="profile-menu">
-        <img id="profile-img" src="placeholder.jpg" alt="Foto de perfil" style="width: 50px; border-radius: 50%; cursor: pointer;">
-        <div id="dropdown" class="dropdown-content">
-          <a href="#" id="logoutButton">Logout</a>
-        </div>
-      </div>
-    </header>
-
-    <!-- Contenido principal que puede hacer scroll -->
-    <main class="main-content">
-      <h2>Bienvenido a Globify</h2>
-      <div class="results-container">
-        <div id="track-results" class="results-grid"></div>
-	    </div>
-
-      <!-- Info del usuario -->
-      <div id="user-profile" class="profile-container">
-        <div id="info-title" class="info-title">
-          <h1 class="profile-title" onclick="toggleProfileInfo()">Profile Info</h1>
-          <p id="toggle-info" onclick="toggleProfileInfo()">...</p>
-        </div>
-        <div class="user-info hidden">
-            <div class="user-details">
-                <h3>User name:</h3>
-                <h2 id="user-name">Nombre del Usuario</h2>
+            <div id="artist-search">
+                <div class="search-wrapper">
+                    <input type="text" id="artist-name" placeholder="¿Qué quieres reproducir?" onkeydown="checkEnter(event)">
+                    <button id="search-btn">
+                        <img src="assets/lupa.png" alt="Buscar">
+                    </button>
+                </div>
             </div>
-            <div class="user-details">
-                <h3>Email:</h3>
-                <h2 id="user-email">Correo Electrónico</h2>
+
+            <!-- Contenedor para la imagen de perfil y el menú de logout -->
+            <div class="profile-menu">
+                <img id="profile-img" src="placeholder.jpg" alt="Foto de perfil" style="width: 50px; border-radius: 50%; cursor: pointer;">
+                <div id="dropdown" class="dropdown-content">
+                    <a href="#" id="logoutButton">Logout</a>
+                </div>
             </div>
-            <div class="user-details">
-                <h3>Country:</h3>
-                <h2 id="user-country">País</h2>
+        </header>
+
+        <!-- Contenido principal que puede hacer scroll -->
+        <main class="main-content">
+            <div class="results-container">
+                <div id="track-results" class="results-grid"></div>
             </div>
-        </div>
+            <div id="hideContainer">
+                <h2>Bienvenido a Globify</h2>
+
+                <!-- Info del usuario -->
+                <div id="user-profile" class="profile-container">
+                    <div id="info-title" class="info-title">
+                        <h1 class="profile-title" onclick="toggleProfileInfo()">Profile Info</h1>
+                        <p id="toggle-info" onclick="toggleProfileInfo()">...</p>
+                    </div>
+                    <div class="user-info hidden">
+                        <div class="user-details">
+                            <h3>User name:</h3>
+                            <h2 id="user-name">Nombre del Usuario</h2>
+                        </div>
+                        <div class="user-details">
+                            <h3>Email:</h3>
+                            <h2 id="user-email">Correo Electrónico</h2>
+                        </div>
+                        <div class="user-details">
+                            <h3>Country:</h3>
+                            <h2 id="user-country">País</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección para las canciones populares -->
+            <!-- Sección para las canciones populares -->
+            <section id="top-tracks-container">
+              <h2 id="track-title">Canciones Populares</h2>
+              <div id="top-tracks">
+                  <!-- Aquí se añadirán las canciones dinámicamente -->
+              </div>
+            </section>
+
+          
+        </main>
     </div>
-    
-      <div id="user-profile" style="display: none;"></div> <!-- Añadir un contenedor para el perfil del usuario -->
-    </main>
-  </div>
 
-  <footer class="footer">
-    <!-- Menú de tres iconos en el pie de página -->
-    <div class="icon-menu">
-        <a href="layout.html">
-            <img src="assets/casa.png" alt="Página 1" class="menu-icon">
-        </a>
-        <a href="home.html">
-            <img src="assets/home.png" alt="Página 2" class="menu-icon">
-        </a>
-        <a href="favourites.html">
-            <img src="assets/corazon.png" alt="Página 3" class="menu-icon">
-        </a>
-        <a href="playlist.html">
-          <img src="assets/playlist.png" alt="Página 4" class="menu-icon">
-      </a>
-    </div>
-</footer>
+    <footer class="footer">
+        <!-- Menú de tres iconos en el pie de página -->
+        <div class="icon-menu">
+            <a href="layout.html">
+                <img src="assets/casa.png" alt="Página 1" class="menu-icon">
+            </a>
+            <a href="home.html">
+                <img src="assets/home.png" alt="Página 2" class="menu-icon">
+            </a>
+            <a href="favourites.html">
+                <img src="assets/corazon.png" alt="Página 3" class="menu-icon">
+            </a>
+            <a href="playlist.html">
+                <img src="assets/playlist.png" alt="Página 4" class="menu-icon">
+            </a>
+        </div>
+    </footer>
 
-
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
