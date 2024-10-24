@@ -206,6 +206,9 @@ function loadFavorites() {
                 <button class="play-btn" data-url="${track.previewUrl || ''}" style="${track.previewUrl ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.previewUrl ? '' : 'disabled'}>
                     Reproducir
                 </button>
+                <button class="pause-btn" data-url="${track.previewUrl || ''}" style="${track.previewUrl ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.previewUrl ? '' : 'disabled'}>
+                    Pausar
+                </button>
                 <button class="remove-btn" data-track-id="${track.id}">
                     <img src="assets/heart2.png" alt="Quitar de favoritos" style="width: 13px; height: 13px;">
                 </button>
@@ -216,6 +219,11 @@ function loadFavorites() {
             // Manejo del evento de clic en el botón de reproducción
             favoriteItemDiv.querySelector('.play-btn:not([disabled])')?.addEventListener('click', () => {
                 playTrack(track.previewUrl); // Implementa la función de reproducción
+            });
+
+            // Manejo del evento de clic en el botón de pausa
+            favoriteItemDiv.querySelector('.pause-btn:not([disabled])')?.addEventListener('click', () => {
+                pauseTrack(); // Implementa la función de pausa
             });
 
             // Manejo del evento de clic en el botón de quitar
@@ -236,8 +244,19 @@ function removeFromFavorites(trackId) {
 
 // Función para reproducir la canción
 function playTrack(previewUrl) {
-    const audio = new Audio(previewUrl);
-    audio.play(); // Reproducir la canción
+    if (currentAudio) { // Si hay un audio en reproducción, lo detiene
+        currentAudio.pause();
+    }
+
+    currentAudio = new Audio(previewUrl);
+    currentAudio.play(); // Reproducir la canción
+}
+
+// Función para pausar la canción
+function pauseTrack() {
+    if (currentAudio) {
+        currentAudio.pause(); // Pausar el audio actual
+    }
 }
 
 // Cargar favoritos al cargar la página
@@ -249,6 +268,7 @@ window.onload = () => {
 if (document.getElementById('favorites-list')) {
     loadFavorites(); 
 }
+
 
 /*------------ LOGOUT ------------*/
 
