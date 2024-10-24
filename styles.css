@@ -109,6 +109,7 @@
     display: flex; /* Usar Flexbox para alinear las columnas */
     justify-content: space-between; /* Espacio entre las columnas */
     margin-top: 20px; /* Espacio entre la barra de búsqueda y los resultados */
+	columns: 2;
 }
 
 .results-grid {
@@ -267,7 +268,7 @@ h4 {
 }
 
 .results-grid {
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
 }
