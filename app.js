@@ -60,8 +60,12 @@ async function displayUserProfile() {
 let currentAudio = null; // Variable para almacenar el audio actual
 let currentButton = null; // Variable para almacenar el botón actual
 
-document.getElementById('search-btn')?.addEventListener('click', async () => {
-    const query = document.getElementById('artist-name').value; // Obtener la consulta de búsqueda
+const searchBtn = document.getElementById('search-btn');
+const artistInput = document.getElementById('artist-name');
+const trackResultsDiv = document.getElementById('track-results');
+
+const searchTracks = async () => {
+    const query = artistInput.value; // Obtener la consulta de búsqueda
     const token = localStorage.getItem('spotifyToken');
 
     // Realiza la búsqueda solo de canciones
@@ -74,7 +78,6 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
     const data = await response.json();
 
     // Limpiar resultados previos
-    const trackResultsDiv = document.getElementById('track-results');
     trackResultsDiv.innerHTML = ''; // Vacía los resultados anteriores
 
     // Mostrar resultados de canciones
@@ -91,16 +94,17 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
                 </button>
             `;
 
-            // Añadir botón solo si hay preview_url
-            if (track.preview_url) {
-                trackDiv.innerHTML += `<button class="play-btn" data-url="${track.preview_url}">Reproducir</button>`;
-            } else {
-                trackDiv.innerHTML += `<p>Vista previa no disponible.</p>`;
-            }
+            // Añadir botón de reproducir
+            trackDiv.innerHTML += `
+                <button class="play-btn" data-url="${track.preview_url || ''}" style="${track.preview_url ? '' : 'background-color: grey; cursor: not-allowed;'}" ${track.preview_url ? '' : 'disabled'}>
+                    Reproducir
+                </button>
+            `;
+            
             trackResultsDiv.appendChild(trackDiv);
 
             // Manejo del evento de clic en el botón de reproducción
-            trackDiv.querySelector('.play-btn')?.addEventListener('click', () => {
+            trackDiv.querySelector('.play-btn:not([disabled])')?.addEventListener('click', () => {
                 if (currentAudio) {
                     currentAudio.pause();
                     if (currentButton) {
@@ -146,7 +150,20 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
     } else {
         trackResultsDiv.innerHTML = '<p>No se encontraron canciones.</p>';
     }
+};
+
+// Añadir evento de clic al botón de búsqueda
+searchBtn.addEventListener('click', searchTracks);
+
+// Añadir evento de pulsar Enter en el campo de entrada
+artistInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        searchTracks();
+    }
 });
+
+
+
 
 /*------------ FAVORITOS ------------ */
 
