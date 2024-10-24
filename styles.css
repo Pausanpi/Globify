@@ -304,3 +304,55 @@ h4 {
 .favorite-item button:hover {
   background-color: #1aa34a; /* Color al pasar el ratón */
 }
+
+/*----------- PROFILE INFO ----------- */
+
+.profile-container {
+  padding: 16px;
+  background-color: #212121;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin: 16px;
+  text-align: left;
+}
+
+.profile-title {
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #1db954; /* Verde de Spotify */
+}
+
+.user-info {
+  margin-top: 12px;
+}
+
+.user-details {
+  margin-bottom: 8px;
+}
+
+.user-details h3 {
+  margin-bottom: 4px;
+  font-size: 1.2em;
+  color: #1db954; /* Verde de Spotify */
+}
+
+.hidden {
+  display: none; /* Oculta el contenido */
+}
+
+/* Estilos para pantallas más grandes */
+@media (min-width: 600px) {
+  .profile-container {
+      max-width: 500px;
+      margin: 0 auto; /* Centra el contenedor */
+  }
+}
+
+.info-title {
+  font-size: 1.2em;
+  color: #1db954; /* Verde de Spotify */
+  display: flex;
+  justify-content: between;
+}
+
+

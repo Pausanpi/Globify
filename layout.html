@@ -42,26 +42,31 @@
       </div>
 
 
-      <!-- Secciones de categorías de música -->
-      <section class="music-category">
-        <h3>Pop</h3>
-        <div id="pop-results" class="results-grid"></div>
-      </section>
-      
-      <section class="music-category">
-        <h3>Rock</h3>
-        <div id="rock-results" class="results-grid"></div>
-      </section>
-      
-      <section class="music-category">
-        <h3>Jazz</h3>
-        <div id="jazz-results" class="results-grid"></div>
-      </section>
-      
-      <section class="music-category">
-        <h3>Hip Hop</h3>
-        <div id="hiphop-results" class="results-grid"></div>
-      </section>
+      <!-- Info del usuario -->
+      <div id="user-profile" class="profile-container">
+          <div id="info-title">
+            <h1 class="profile-title" onclick="toggleProfileInfo()">Profile Info</h1>
+            <p>...</p>
+          </div>
+        <div class="user-info hidden">
+            <div class="user-details">
+                <h3>User name:</h3>
+                <h2 id="user-name">Nombre del Usuario</h2>
+            </div>
+            <div class="user-details">
+                <h3>Email:</h3>
+                <h2 id="user-email">Correo Electrónico</h2>
+            </div>
+            <div class="user-details">
+                <h3>Country:</h3>
+                <h2 id="user-country">País</h2>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
 
 
       <div id="user-profile" style="display: none;"></div> <!-- Añadir un contenedor para el perfil del usuario -->
