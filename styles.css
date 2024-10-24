@@ -1,5 +1,8 @@
 @import url('css/categorias.css');
 @import url('css/profile.css');
+@import url('css/favs.css');
+@import url('css/footer.css');
+@import url('css/results.css');
 
 * {
 	margin: 0;
@@ -106,42 +109,6 @@
 	gap: 10px;
 	padding: 10px;
   }
-  
-  /* Asegúrate de tener esto en tu styles.css */
-  .results-container {
-    display: flex; /* Usar Flexbox para alinear las columnas */
-    justify-content: space-between; /* Espacio entre las columnas */
-    margin-top: 20px; /* Espacio entre la barra de búsqueda y los resultados */
-	columns: 2;
-}
-
-.results-grid {
-    display: flex; /* Usar Flexbox para mostrar resultados en filas */
-    flex-wrap: wrap; /* Permitir que los elementos se ajusten a varias filas */
-    flex: 1; /* Las columnas ocuparán espacio equitativamente */
-    margin: 0 10px; /* Margen entre las columnas */
-}
-
-.result-item {
-    margin: 5px; /* Espacio entre los resultados individuales */
-    text-align: center; /* Centrar el texto y las imágenes */
-    flex: 1 1 45%; /* Ajustar el ancho a un 45% para que se vean dos en una fila */
-    box-sizing: border-box; /* Asegura que el margen no afecte el ancho total */
-    background-color: #fff; /* Fondo blanco para las tarjetas */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para un efecto de elevación */
-    padding: 10px; /* Espacio interno */
-    transition: transform 0.2s; /* Animación al pasar el ratón */
-}
-
-.result-item:hover {
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
-}
-
-.result-item img {
-    width: 100%; /* Hacer que las imágenes ocupen el ancho completo del contenedor */
-    border-radius: 4px; /* Bordes redondeados para las imágenes */
-}
 
 h3 {
     text-align: left; /* Alinear los títulos a la izquierda */
@@ -200,111 +167,4 @@ h4 {
 
 .show {
   display: block;
-}
-
-/* En pantallas más grandes, puedes ajustar el diseño si es necesario */
-@media (min-width: 769px) {
-  .footer {
-      justify-content: flex-end;
-      padding-right: 20px;
-  }
-}
-
-.footer {
-  background-color: #121212; /* Color de fondo */
-  color: white; /* Color del texto */
-  display: flex; /* Usar flexbox */
-  justify-content: center; /* Centrar horizontalmente */
-  padding: 10px; /* Espaciado alrededor */
-  align-items: center; /* Centrar verticalmente */
-  height: 50px; /* Altura del footer */
-  position: fixed; /* Fijo en la parte inferior */
-  bottom: 0; /* Posición inferior */
-  left: 0; /* Lado izquierdo */
-  right: 0; /* Lado derecho */
-  z-index: 1000; /* Superponer sobre otros elementos */
-}
-
-.icon-menu {
-  display: flex; /* Usar flexbox para alinear los iconos */
-  justify-content: space-around; /* Espaciado automático entre iconos */
-  align-items: center; /* Centrar los iconos verticalmente */
-  width: 90%; /* Asegúrate de que ocupe todo el ancho */
-}
-.menu-item {
-  margin: 0 20px; /* Espacio entre los iconos */
-  text-align: center; /* Centrar el texto en cada ítem */
-  transition: transform 0.2s; /* Efecto de transformación al pasar el ratón */
-}
-
-.menu-item:hover {
-  transform: scale(1.1); /* Aumentar ligeramente el tamaño al pasar el ratón */
-}
-
-.menu-icon {
-  width: 35px; /* Ancho del icono */
-  height: 35px; /* Altura del icono */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-  display: block; /* Asegura que el icono se comporte como un bloque */
-}
-
-.menu-icon:hover {
-  filter: brightness(1.5); /* Aumenta el brillo al pasar el ratón */
-}
-
-.menu-icon:active {
-  filter: brightness(2.5) drop-shadow(0px 0px 30px rgba(0, 255, 0, 1)); /* Sombra verde más brillante al hacer clic */
-}
-
-.active-page .menu-icon {
-  filter: brightness(1.8) drop-shadow(0px 0px 15px rgba(0, 255, 0, 1)); /* Verde brillante */
-}
-
-.music-category {
-  margin: 20px 0;
-}
-
-.music-category h3 {
-  margin-bottom: 10px;
-  font-size: 24px;
-  color: #1db954; /* Verde de Spotify */
-}
-
-.results-grid {
-  display: flex;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
-}
-
-
-.favorites-list {
-  display: flex;
-  flex-direction: column; /* Alinear elementos en columna */
-  padding: 20px;
-}
-
-.favorite-item {
-  display: flex;
-  align-items: center; /* Centrar verticalmente */
-  margin-bottom: 15px; /* Espaciado entre canciones */
-}
-
-.favorite-item img {
-  width: 50px; /* Tamaño de la imagen */
-  height: 50px; /* Tamaño de la imagen */
-  margin-right: 15px; /* Espaciado entre imagen y texto */
-}
-
-.favorite-item button {
-  margin-left: auto; /* Empuja el botón a la derecha */
-  padding: 5px 10px; /* Espaciado del botón */
-  background-color: #1DB954; /* Color de fondo verde */
-  color: white; /* Color del texto */
-  border: none; /* Sin borde */
-  border-radius: 25px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
-}
-
-.favorite-item button:hover {
-  background-color: #1aa34a; /* Color al pasar el ratón */
 }

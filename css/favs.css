@@ -1,0 +1,31 @@
+.favorites-list {
+	display: flex;
+	flex-direction: column; /* Alinear elementos en columna */
+	padding: 20px;
+  }
+  
+  .favorite-item {
+	display: flex;
+	align-items: center; /* Centrar verticalmente */
+	margin-bottom: 15px; /* Espaciado entre canciones */
+  }
+  
+  .favorite-item img {
+	width: 50px; /* Tamaño de la imagen */
+	height: 50px; /* Tamaño de la imagen */
+	margin-right: 15px; /* Espaciado entre imagen y texto */
+  }
+  
+  .favorite-item button {
+	margin-left: auto; /* Empuja el botón a la derecha */
+	padding: 5px 10px; /* Espaciado del botón */
+	background-color: #1DB954; /* Color de fondo verde */
+	color: white; /* Color del texto */
+	border: none; /* Sin borde */
+	border-radius: 25px; /* Bordes redondeados */
+	cursor: pointer; /* Cambia el cursor al pasar por encima */
+  }
+  
+  .favorite-item button:hover {
+	background-color: #1aa34a; /* Color al pasar el ratón */
+  }
