@@ -1,12 +1,11 @@
-const CLIENT_ID = '8dd4cfb515cf4929b141f028721625b6'; // Tu Client ID
-const REDIRECT_URI = 'http://localhost:5500/layout.html'; // Cambia esto a la URI de tu página principal
+const CLIENT_ID = '8dd4cfb515cf4929b141f028721625b6';
+const REDIRECT_URI = 'http://localhost:5500/layout.html';
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const RESPONSE_TYPE = 'token';
 
-const SCOPES = 'user-read-private user-read-email';
-const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}`;
+const SCOPES = 'user-read-private user-read-email'; //Permisos
+const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}`; //URL autentificación
 
-// Manejo de eventos para el botón de inicio de sesión en layout.html
 document.getElementById('login-btn')?.addEventListener('click', () => {
     window.location.href = AUTH_URL; // Redirige a Spotify para iniciar sesión
 });
@@ -25,6 +24,8 @@ if (localStorage.getItem('spotifyToken')) {
     document.getElementById('artist-search').style.display = 'block'; // Mostrar el formulario de búsqueda
     displayUserProfile(); // Mostrar el perfil del usuario
 }
+
+/*------------ PERFIL Y BARRA DE BUSQUEDA ------------*/
 
 // Función para obtener y mostrar el perfil del usuario
 async function displayUserProfile() {
@@ -164,6 +165,24 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
     }
 });
 
+// Manejo de clics fuera de los resultados de búsqueda
+document.addEventListener('click', function(event) {
+    const artistResultsDiv = document.getElementById('artist-results');
+    const trackResultsDiv = document.getElementById('track-results');
+    const searchWrapper = document.querySelector('.search-wrapper');
+
+    const clickedOutsideArtist = !artistResultsDiv.contains(event.target);
+    const clickedOutsideTrack = !trackResultsDiv.contains(event.target);
+    const clickedOutsideSearch = !searchWrapper.contains(event.target);
+
+    if (clickedOutsideArtist && clickedOutsideTrack && clickedOutsideSearch) {
+        artistResultsDiv.innerHTML = ''; // Limpia los resultados de artistas
+        trackResultsDiv.innerHTML = '';  // Limpia los resultados de canciones
+    }
+});
+
+/*------------ FAVORITOS ------------ */
+
 // Función para añadir una canción a la lista de favoritos
 function addToFavorites(track) {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -185,36 +204,6 @@ function addToFavorites(track) {
         alert('La canción ya está en favoritos');
     }
 }
-
-// Función para cargar y mostrar los favoritos en favorites.html
-/*function loadFavorites() {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    const favoritesListDiv = document.getElementById('favorites-list');
-
-    if (favorites.length === 0) {
-        favoritesListDiv.innerHTML = '<p>No tienes canciones favoritas.</p>';
-        return;
-    }
-
-    favoritesListDiv.innerHTML = ''; // Limpiar lista previa
-
-    favorites.forEach(track => {
-        const trackDiv = document.createElement('div');
-        trackDiv.classList.add('result-item');
-        trackDiv.innerHTML = `
-            <h4>${track.name}</h4>
-            <p>${track.artists}</p>
-            <img src="${track.imageUrl}" alt="${track.name}">
-            <button class="play-btn" data-url="${track.previewUrl}">Reproducir</button>
-        `;
-        favoritesListDiv.appendChild(trackDiv);
-
-        trackDiv.querySelector('.play-btn')?.addEventListener('click', () => {
-            const audio = new Audio(track.previewUrl);
-            audio.play();
-        });
-    });
-}*/
 
 // Función para cargar y mostrar las canciones favoritas
 function loadFavorites() {
@@ -261,11 +250,11 @@ window.onload = () => {
 };
 
 
-//--------------------------------------------------------------------------
-
 if (document.getElementById('favorites-list')) {
     loadFavorites(); // Llama a esta función en favorites.html
 }
+
+/*------------ LOGOUT ------------*/
 
 // Manejo del botón de Logout
 document.getElementById('logoutButton')?.addEventListener('click', () => {
@@ -278,36 +267,17 @@ document.getElementById('logoutButton')?.addEventListener('click', () => {
 
 document.getElementById('profile-img').addEventListener('click', function() {
     document.getElementById("dropdown").classList.toggle("show");
-  });
+});
 
-  // Cerrar el menú si se hace clic fuera de él
-  window.onclick = function(event) {
-    if (!event.target.matches('#profile-img')) {
-      const dropdowns = document.getElementsByClassName("dropdown-content");
-      for (let i = 0; i < dropdowns.length; i++) {
-        dropdowns[i].classList.remove('show');
-      }
-    }
-  }
+
+/*------------ LOGO SPOTIFY ------------*/
 
 document.getElementById('logo-img').addEventListener('click', () => {
     window.location.href = 'http://localhost:5500/layout.html'; // Cambia la URL según sea necesario
 });
 
-document.addEventListener('click', function(event) {
-    const artistResultsDiv = document.getElementById('artist-results');
-    const trackResultsDiv = document.getElementById('track-results');
-    const searchWrapper = document.querySelector('.search-wrapper');
 
-    const clickedOutsideArtist = !artistResultsDiv.contains(event.target);
-    const clickedOutsideTrack = !trackResultsDiv.contains(event.target);
-    const clickedOutsideSearch = !searchWrapper.contains(event.target);
-
-    if (clickedOutsideArtist && clickedOutsideTrack && clickedOutsideSearch) {
-        artistResultsDiv.innerHTML = ''; // Limpia los resultados de artistas
-        trackResultsDiv.innerHTML = '';  // Limpia los resultados de canciones
-    }
-});
+/*------------ PAGINAS ------------*/
 
 // Obtener la URL actual de la página
 const currentPage = window.location.pathname;
@@ -322,6 +292,8 @@ if (currentPage.includes("layout.html")) {
 } else if (currentPage.includes("playlist.html")) {
     document.querySelector('a[href="playlist.html"]').classList.add('active-page');
 }
+
+/*------------ PERFIL DE USUARIO ------------*/
 
 function renderUserProfile(userData) {
     const userProfileDiv = document.getElementById('user-profile');
@@ -358,8 +330,7 @@ function toggleProfileInfo() {
 }
 
 
-
-//------ categorias ----------
+/*------------ CATEGORÍAS HOME ------------*/
 
 const categories = [
 	{ name: 'Música', image: 'https://cdns-images.dzcdn.net/images/cover/2370f31d7a02c149f2748d01c4a7d220/0x1900-000000-80-0-0.jpg'},
