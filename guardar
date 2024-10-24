@@ -1,0 +1,97 @@
+/*----------- PROFILE INFO ----------- */
+
+.profile-container {
+  padding: 16px;
+  background-color: #212121;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  margin: 16px;
+  text-align: left;
+}
+
+.profile-title {
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #1db954; /* Verde de Spotify */
+}
+
+.user-info {
+  margin-top: 12px;
+}
+
+.user-details {
+  margin-bottom: 8px;
+}
+
+.user-details h3 {
+  margin-bottom: 4px;
+  font-size: 1.2em;
+  color: #1db954; /* Verde de Spotify */
+}
+
+.hidden {
+  display: none; /* Oculta el contenido */
+}
+
+/* Estilos para pantallas más grandes */
+@media (min-width: 600px) {
+  .profile-container {
+      max-width: 500px;
+      margin: 0 auto; /* Centra el contenedor */
+  }
+}
+
+.info-title {
+  font-size: 1.2em;
+  color: #1db954; /* Verde de Spotify */
+  display: flex;
+  justify-content: between;
+}
+
+
+
+
+function renderUserProfile(userData) {
+    const userProfileDiv = document.getElementById('user-profile');
+    userProfileDiv.classList.add('loaded'); // Añadir clase loaded para la animación
+    userProfileDiv.style.display = 'block'; // Mostrar el contenedor
+
+    document.getElementById('profile-img').src = userData.images[0]?.url || 'placeholder.jpg';
+    document.getElementById('user-name').textContent = userData.display_name;
+    document.getElementById('user-email').textContent = userData.email;
+    document.getElementById('user-country').textContent = userData.country;
+}
+
+window.onload = function() {
+    if (localStorage.getItem('spotifyToken')) {
+        displayUserProfile();
+    }
+};
+
+function toggleProfileInfo() {
+    const userInfo = document.querySelector('.user-info');
+    userInfo.classList.toggle('hidden'); // Alterna la clase 'hidden'
+}
+
+
+<!-- Info del usuario -->
+      <div id="user-profile" class="profile-container">
+          <div id="info-title">
+            <h1 class="profile-title" onclick="toggleProfileInfo()">Profile Info</h1>
+            <p>...</p>
+          </div>
+        <div class="user-info hidden">
+            <div class="user-details">
+                <h3>User name:</h3>
+                <h2 id="user-name">Nombre del Usuario</h2>
+            </div>
+            <div class="user-details">
+                <h3>Email:</h3>
+                <h2 id="user-email">Correo Electrónico</h2>
+            </div>
+            <div class="user-details">
+                <h3>Country:</h3>
+                <h2 id="user-country">País</h2>
+            </div>
+        </div>
+    </div>

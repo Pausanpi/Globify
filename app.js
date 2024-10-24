@@ -28,7 +28,12 @@ if (localStorage.getItem('spotifyToken')) {
 
 // Función para obtener y mostrar el perfil del usuario
 async function displayUserProfile() {
-    const token = localStorage.getItem('spotifyToken');
+    const token = localStorage.getItem('spotifyToken'); // Obtener el token
+
+    if (!token) {
+        console.log("Token no disponible, no se puede obtener el perfil.");
+        return;
+    }
 
     try {
         const response = await fetch('https://api.spotify.com/v1/me', {
@@ -39,21 +44,16 @@ async function displayUserProfile() {
 
         if (response.ok) {
             const userData = await response.json();
-            
-            // Mostrar el perfil del usuario en el contenedor correcto
-            const userProfileDiv = document.getElementById('user-profile');
-            userProfileDiv.style.display = 'block'; // Mostrar el perfil
-
-            // Actualizar la imagen de perfil en el encabezado
-            const profileImg = document.getElementById('profile-img');
-            profileImg.src = userData.images[0]?.url || 'placeholder.jpg'; // Actualiza la imagen de perfil
+            console.log("Datos del usuario:", userData); // Imprimir datos en la consola para depuración
+            renderUserProfile(userData); // Renderizar el perfil del usuario
         } else {
             console.error('Error en la respuesta de la API:', response.status, response.statusText);
         }
     } catch (error) {
-        console.error('Error fetching user profile:', error);
+        console.error('Error al obtener el perfil del usuario:', error);
     }
 }
+
 
 // Función para buscar artistas y canciones
 let currentAudio = null; // Variable para almacenar el audio actual
@@ -322,6 +322,29 @@ if (currentPage.includes("layout.html")) {
 } else if (currentPage.includes("playlist.html")) {
     document.querySelector('a[href="playlist.html"]').classList.add('active-page');
 }
+
+function renderUserProfile(userData) {
+    const userProfileDiv = document.getElementById('user-profile');
+    userProfileDiv.classList.add('loaded'); // Añadir clase loaded para la animación
+    userProfileDiv.style.display = 'block'; // Mostrar el contenedor
+
+    document.getElementById('profile-img').src = userData.images[0]?.url || 'placeholder.jpg';
+    document.getElementById('user-name').textContent = userData.display_name;
+    document.getElementById('user-email').textContent = userData.email;
+    document.getElementById('user-country').textContent = userData.country;
+}
+
+window.onload = function() {
+    if (localStorage.getItem('spotifyToken')) {
+        displayUserProfile();
+    }
+};
+
+function toggleProfileInfo() {
+    const userInfo = document.querySelector('.user-info');
+    userInfo.classList.toggle('hidden'); // Alterna la clase 'hidden'
+}
+
 
 
 //------ categorias ----------
