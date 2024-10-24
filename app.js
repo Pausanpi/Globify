@@ -61,11 +61,11 @@ let currentAudio = null; // Variable para almacenar el audio actual
 let currentButton = null; // Variable para almacenar el botón actual
 
 document.getElementById('search-btn')?.addEventListener('click', async () => {
-    const query = document.getElementById('artist-name').value;
+    const query = document.getElementById('artist-name').value; // Obtener la consulta de búsqueda
     const token = localStorage.getItem('spotifyToken');
 
-    // Realiza la búsqueda de artistas y canciones
-    const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=artist,track`, {
+    // Realiza la búsqueda solo de canciones
+    const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=track`, {
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -74,25 +74,8 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
     const data = await response.json();
 
     // Limpiar resultados previos
-    const artistResultsDiv = document.getElementById('artist-results');
     const trackResultsDiv = document.getElementById('track-results');
-    artistResultsDiv.innerHTML = ''; // Vacía los resultados anteriores
     trackResultsDiv.innerHTML = ''; // Vacía los resultados anteriores
-
-    // Mostrar resultados de artistas
-    if (data.artists && data.artists.items.length > 0) {
-        data.artists.items.forEach(artist => {
-            const artistDiv = document.createElement('div');
-            artistDiv.classList.add('result-item');
-            artistDiv.innerHTML = `
-                <h4>${artist.name}</h4>
-                <img src="${artist.images[0]?.url || 'placeholder.jpg'}" alt="${artist.name}">
-            `;
-            artistResultsDiv.appendChild(artistDiv);
-        });
-    } else {
-        artistResultsDiv.innerHTML = '<p>No se encontraron artistas.</p>';
-    }
 
     // Mostrar resultados de canciones
     if (data.tracks && data.tracks.items.length > 0) {
@@ -162,22 +145,6 @@ document.getElementById('search-btn')?.addEventListener('click', async () => {
         });
     } else {
         trackResultsDiv.innerHTML = '<p>No se encontraron canciones.</p>';
-    }
-});
-
-// Manejo de clics fuera de los resultados de búsqueda
-document.addEventListener('click', function(event) {
-    const artistResultsDiv = document.getElementById('artist-results');
-    const trackResultsDiv = document.getElementById('track-results');
-    const searchWrapper = document.querySelector('.search-wrapper');
-
-    const clickedOutsideArtist = !artistResultsDiv.contains(event.target);
-    const clickedOutsideTrack = !trackResultsDiv.contains(event.target);
-    const clickedOutsideSearch = !searchWrapper.contains(event.target);
-
-    if (clickedOutsideArtist && clickedOutsideTrack && clickedOutsideSearch) {
-        artistResultsDiv.innerHTML = ''; // Limpia los resultados de artistas
-        trackResultsDiv.innerHTML = '';  // Limpia los resultados de canciones
     }
 });
 
