@@ -6,6 +6,7 @@
   <title>Globify</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="app-container">
@@ -15,7 +16,7 @@
 
       <div id="artist-search"> <!-- Asegúrate de ocultar este div inicialmente -->
         <div class="search-wrapper">
-          <input type="text" id="artist-name" placeholder="¿Qué quieres reproducir?" onkeydown="checkEnter(event)">
+          <input type="text" id="artist-name" placeholder="¿Qué quieres repoducir?" onkeydown="checkEnter(event)">
           <button id="search-btn">
             <img src="assets/lupa.png" alt="Buscar">
           </button>
@@ -33,16 +34,37 @@
 
     <!-- Contenido principal que puede hacer scroll -->
     <main class="main-content">
-      <h2>FAVOURITES</h2>
+      <h2>Bienvenido a Globify</h2>
+      <p>Aquí irá el contenido principal de la aplicación.</p>
       <div class="results-container">
         <div id="artist-results" class="results-grid"></div>
         <div id="track-results" class="results-grid"></div>
       </div>
+
+
+      <!-- Secciones de categorías de música -->
+      <section class="music-category">
+        <h3>Pop</h3>
+        <div id="pop-results" class="results-grid"></div>
+      </section>
+      
+      <section class="music-category">
+        <h3>Rock</h3>
+        <div id="rock-results" class="results-grid"></div>
+      </section>
+      
+      <section class="music-category">
+        <h3>Jazz</h3>
+        <div id="jazz-results" class="results-grid"></div>
+      </section>
+      
+      <section class="music-category">
+        <h3>Hip Hop</h3>
+        <div id="hiphop-results" class="results-grid"></div>
+      </section>
+
+
       <div id="user-profile" style="display: none;"></div> <!-- Añadir un contenedor para el perfil del usuario -->
-    
-      <h2>Mis Canciones Favoritas</h2>
-      <div class="favorites-list" id="favorites-list"></div> <!-- Cambiar a un div más específico -->
-    
     </main>
   </div>
 
@@ -60,9 +82,10 @@
         </a>
         <a href="playlist.html">
           <img src="assets/playlist.png" alt="Página 4" class="menu-icon">
-        </a>
+      </a>
     </div>
-  </footer>
+</footer>
+
 
   <script src="app.js"></script>
 </body>

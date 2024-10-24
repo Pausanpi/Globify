@@ -6,86 +6,37 @@
   <title>Globify</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="app-container">
     <!-- Header -->
     <header class="header">
-      <img id="logo-img" src="assets/logoBlanco.png" alt="Logo" style="cursor: pointer;">
+	  <img id="logo-img" src="assets/logoBlanco.png" alt="Logo" style="cursor: pointer;">
 
-      <div id="artist-search"> <!-- Asegúrate de ocultar este div inicialmente -->
+	  <div id="artist-search"> <!-- Asegúrate de ocultar este div inicialmente -->
         <div class="search-wrapper">
           <input type="text" id="artist-name" placeholder="¿Qué quieres repoducir?" onkeydown="checkEnter(event)">
           <button id="search-btn">
-            <img src="assets/lupa.png" alt="Buscar">
+            <img src="assets/lupa.png" alt="Buscar" class="search-icon">
           </button>
         </div>
       </div>
 
-      <!-- Contenedor para la imagen de perfil y el menú de logout -->
-      <div class="profile-menu">
-        <img id="profile-img" src="placeholder.jpg" alt="Foto de perfil" style="width: 50px; border-radius: 50%; cursor: pointer;">
-        <div id="dropdown" class="dropdown-content">
-          <a href="#" id="logoutButton">Logout</a>
-        </div>
-      </div>
+	  <button id="login-btn">Iniciar Sesión</button>
     </header>
 
     <!-- Contenido principal que puede hacer scroll -->
     <main class="main-content">
       <h2>Bienvenido a Globify</h2>
       <p>Aquí irá el contenido principal de la aplicación.</p>
-      <div class="results-container">
-        <div id="artist-results" class="results-grid"></div>
-        <div id="track-results" class="results-grid"></div>
-      </div>
-
-
-      <!-- Secciones de categorías de música -->
-      <section class="music-category">
-        <h3>Pop</h3>
-        <div id="pop-results" class="results-grid"></div>
-      </section>
-      
-      <section class="music-category">
-        <h3>Rock</h3>
-        <div id="rock-results" class="results-grid"></div>
-      </section>
-      
-      <section class="music-category">
-        <h3>Jazz</h3>
-        <div id="jazz-results" class="results-grid"></div>
-      </section>
-      
-      <section class="music-category">
-        <h3>Hip Hop</h3>
-        <div id="hiphop-results" class="results-grid"></div>
-      </section>
-
-
-      <div id="user-profile" style="display: none;"></div> <!-- Añadir un contenedor para el perfil del usuario -->
-    </main>
-  </div>
-
-  <footer class="footer">
-    <!-- Menú de tres iconos en el pie de página -->
-    <div class="icon-menu">
-        <a href="index.html">
-            <img src="assets/casa.png" alt="Página 1" class="menu-icon">
-        </a>
-        <a href="home.html">
-            <img src="assets/home.png" alt="Página 2" class="menu-icon">
-        </a>
-        <a href="favourites.html">
-            <img src="assets/corazon.png" alt="Página 3" class="menu-icon">
-        </a>
-        <a href="playlist.html">
-          <img src="assets/playlist.png" alt="Página 4" class="menu-icon">
-      </a>
+        <div class="results-container">
+            <div id="artist-results" class="results-grid"></div>
+            <div id="track-results" class="results-grid"></div>
+        </div>
     </div>
-</footer>
+    </main>
 
+  </div>
 
   <script src="app.js"></script>
 </body>

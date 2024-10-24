@@ -1,12 +1,12 @@
 const CLIENT_ID = '8dd4cfb515cf4929b141f028721625b6'; // Tu Client ID
-const REDIRECT_URI = 'http://localhost:5500/index.html'; // Cambia esto a la URI de tu página principal
+const REDIRECT_URI = 'http://localhost:5500/layout.html'; // Cambia esto a la URI de tu página principal
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const RESPONSE_TYPE = 'token';
 
 const SCOPES = 'user-read-private user-read-email';
 const AUTH_URL = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${encodeURIComponent(SCOPES)}`;
 
-// Manejo de eventos para el botón de inicio de sesión en index.html
+// Manejo de eventos para el botón de inicio de sesión en layout.html
 document.getElementById('login-btn')?.addEventListener('click', () => {
     window.location.href = AUTH_URL; // Redirige a Spotify para iniciar sesión
 });
@@ -273,7 +273,7 @@ document.getElementById('logoutButton')?.addEventListener('click', () => {
     localStorage.removeItem('spotifyToken'); // Elimina el token
     document.getElementById('artist-search').style.display = 'none'; // Ocultar el formulario de búsqueda
     document.getElementById('user-profile').style.display = 'none'; // Ocultar el perfil del usuario
-    window.location.href = 'http://localhost:5500/login.html'; // Redirige a la página de login
+    window.location.href = 'http://localhost:5500/index.html'; // Redirige a la página de login
 });
 
 document.getElementById('profile-img').addEventListener('click', function() {
@@ -291,7 +291,7 @@ document.getElementById('profile-img').addEventListener('click', function() {
   }
 
 document.getElementById('logo-img').addEventListener('click', () => {
-    window.location.href = 'http://localhost:5500/index.html'; // Cambia la URL según sea necesario
+    window.location.href = 'http://localhost:5500/layout.html'; // Cambia la URL según sea necesario
 });
 
 document.addEventListener('click', function(event) {
