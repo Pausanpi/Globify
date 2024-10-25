@@ -1,5 +1,5 @@
 const CLIENT_ID = '8dd4cfb515cf4929b141f028721625b6';
-const REDIRECT_URI = 'http://localhost:5500/layout.html';
+const REDIRECT_URI = 'https://globify-red.vercel.app/layout.html';
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const RESPONSE_TYPE = 'token';
 
@@ -304,7 +304,7 @@ document.getElementById('logoutButton')?.addEventListener('click', () => {
 	localStorage.removeItem('spotifyToken'); // Elimina el token
 	document.getElementById('artist-search').style.display = 'none'; // Ocultar el formulario de búsqueda
 	document.getElementById('user-profile').style.display = 'none'; // Ocultar el perfil del usuario
-	window.location.href = 'http://localhost:5500/index.html'; // Redirige a la página de login
+	window.location.href = 'https://globify-red.vercel.app/index.html'; // Redirige a la página de login
 });
 
 document.getElementById('profile-img').addEventListener('click', function () {
