@@ -1,5 +1,5 @@
 const CLIENT_ID = '8dd4cfb515cf4929b141f028721625b6';
-const REDIRECT_URI = 'https://globify-red.vercel.app';
+const REDIRECT_URI = 'https://globify-red.vercel.app/layout.html';
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const RESPONSE_TYPE = 'token';
 
