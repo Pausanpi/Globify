@@ -141,10 +141,10 @@ const searchTracks = async () => {
 			});
 
 			// Manejo del evento de clic en el botón de "Me gusta"
-			/*trackDiv.querySelector('.favorite-btn')?.addEventListener('click', () => {
-				addToFavorites(track); // Añade a favoritos
-			});*/
 			trackDiv.querySelector('.favorite-btn')?.addEventListener('click', () => {
+				addToFavorites(track); // Añade a favoritos
+			});
+			/* trackDiv.querySelector('.favorite-btn')?.addEventListener('click', () => {
 				if (isTrackInFavorites(track.id)) {
 					removeFromFavorites(track); // Elimina de favoritos si ya está
 				} else {
@@ -152,7 +152,7 @@ const searchTracks = async () => {
 				}
 			
 				toggleFavoriteIcon(trackDiv); // Cambia la imagen del botón
-			});
+			}); */
 			
 		});
 		document.getElementById('hideContainer').style.display = 'none'; // Mostrar el contenedor de favoritos
