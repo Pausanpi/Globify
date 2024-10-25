@@ -471,4 +471,3 @@ async function displayTopTracks() {
 
 // Llama a la función para mostrar las canciones populares
 displayTopTracks();
-

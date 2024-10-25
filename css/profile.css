@@ -4,32 +4,9 @@
 }
 
 .profile-container {
-	padding: 16px;
-	background-color: #212121;
-	border-radius: 8px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-	margin: 16px;
-	text-align: left;
+	margin-bottom: 10px;
 }
   
-.profile-title {
-	margin-top: 5px;
-	font-size: 1.5em;
-	color: #1db954; /* Verde de Spotify */
-}
-  
-  .user-info {
-	max-height: 0; /* Oculta el contenido inicialmente */
-	overflow: hidden; /* Evita que el contenido desborde */
-	transition: max-height 1s ease, opacity 1s ease; /* Transiciones más lentas */
-	opacity: 0; /* Comienza con opacidad 0 */
-  }
-  
-  .user-info:not(.hidden) {
-	max-height: 500px; /* Ajusta este valor según el contenido */
-	opacity: 1; /* Hace que sea completamente visible */
-	transition: max-height 1s ease, opacity 1s ease; /* Transiciones más lentas */
-  }
   
   .user-details {
 	margin-bottom: 8px;
